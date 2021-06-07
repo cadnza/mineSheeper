@@ -12,5 +12,24 @@ class Board extends React.Component {
 				Hard: [24,30]
 			}
 		};
-	}	
+	}
+	render() {
+		this.buildNewGameRow();
+		return <div>Oranges</div>
+	}
+	buildNewGameRow = () => {
+		var labels = this.state.options;
+		console.log(labels); //TEMP
+		console.log(2); //TEMP
+		/*
+		for(var l; l<labels.length; l++){
+			console.log(l);
+		}
+		*/
+	}
 }
+
+ReactDOM.render(
+	<Board />,
+	document.getElementById("board")
+);
