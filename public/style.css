@@ -8,3 +8,6 @@
 .dfButton > button {
 	width: 100%;
 }
+body {
+	background-color: black;
+}
