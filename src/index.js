@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 class Board extends React.Component {
 	constructor() {
-		super()
+		super();
 		this.state = {
 			size: [10,10],
 			options: {
@@ -14,22 +14,18 @@ class Board extends React.Component {
 		};
 	}
 	render() {
+		oranges = {hello};
 		this.buildNewGameRow();
-		return <div>Oranges</div>
+		return <div>Oranges</div>;
 	}
 	buildNewGameRow = () => {
 		var labels = this.state.options;
 		console.log(labels); //TEMP
 		console.log(2); //TEMP
-		/*
-		for(var l; l<labels.length; l++){
+		for(var l; l < labels.length; l++) {
 			console.log(l);
 		}
-		*/
-	}
+	};
 }
 
-ReactDOM.render(
-	<Board />,
-	document.getElementById("board")
-);
+ReactDOM.render(<Board />,document.getElementById("board"));
