@@ -1,30 +1,38 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-class Board extends React.Component {
+class Difficulty extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			size: [10,10],
-			options: {
-				Easy: [10,10],
-				Medium: [16,16],
-				Hard: [24,30]
-			}
+			options: [
+				["A",[10,10]],
+				["B",[16,16]],
+				["C",[24,30]]
+			]
 		};
 	}
 	render() {
-		this.buildNewGameRow();
-		return <div>Oranges</div>;
+		return this.buildNewGameRow();
 	}
 	buildNewGameRow = () => {
-		var labels = this.state.options;
-		console.log(labels); //TEMP
-		console.log(2); //TEMP
-		for(var l; l < labels.length; l++) {
-			console.log(l);
-		}
+		const buttons = this.state.options.map(
+			(x) => {
+				const final = <div class="dfButton">
+					<button
+						key={x[0]}
+						onClick={() => {this.setState({size: x[1]});}}
+					>
+						{x[0]}
+					</button>
+				</div>;
+				return final;
+			}
+		);
+		var final = <div id="dfButtonHolder">{buttons}</div>;
+		return final;
 	};
 }
 
-ReactDOM.render(<Board />,document.getElementById("board"));
+ReactDOM.render(<Difficulty />,document.getElementById("difficulty"));

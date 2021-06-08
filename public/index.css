@@ -1,0 +1,10 @@
+#difficulty {
+	width: 3in;
+}
+#dfButtonHolder {
+	display: grid;
+	grid-auto-flow: column;
+}
+.dfButton > button {
+	width: 100%;
+}
