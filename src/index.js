@@ -14,7 +14,6 @@ class Board extends React.Component {
 		};
 	}
 	render() {
-		oranges = {hello};
 		this.buildNewGameRow();
 		return <div>Oranges</div>;
 	}
