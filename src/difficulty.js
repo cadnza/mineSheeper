@@ -14,7 +14,7 @@ class Difficulty extends React.Component {
 	}
 	render() {
 		const buttons = this.state.options.map(
-			(x) => {
+			x => {
 				const final = <div key={x[0]} className="dfButton">
 					<button
 						onClick={() => {this.setState({size: x[1]});}}
