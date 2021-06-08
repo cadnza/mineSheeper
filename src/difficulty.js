@@ -13,9 +13,6 @@ class Difficulty extends React.Component {
 		};
 	}
 	render() {
-		return this.buildNewGameRow();
-	}
-	buildNewGameRow = () => {
 		const buttons = this.state.options.map(
 			(x) => {
 				const final = <div key={x[0]} className="dfButton">
@@ -30,7 +27,7 @@ class Difficulty extends React.Component {
 		);
 		var final = <div id="dfButtonHolder">{buttons}</div>;
 		return final;
-	};
+	}
 }
 
 export default Difficulty;
