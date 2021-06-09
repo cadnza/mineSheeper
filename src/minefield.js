@@ -4,6 +4,7 @@ class Minefield extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			started: false,
 			kMine: 9,
 			kFlag: 10,
 			kQuestion: 11
@@ -18,9 +19,14 @@ class Minefield extends React.Component {
 		const gridLen = this.props.size[0] * this.props.size[1];
 		var mineButtons = [];
 		for(var i = 0; i < gridLen; i++) {
+			const clickArg = i;
 			mineButtons.push(
-				<div>
-					<button class="mineButton" id={"btn" + i}></button>
+				<div key={i}>
+					<button
+						className="mineButton"
+						id={"btn" + i}
+						onClick={() => this.processClick(clickArg)}
+					/>
 				</div>
 			);
 		}
@@ -36,12 +42,18 @@ class Minefield extends React.Component {
 		</div>;
 		return final;
 	};
+	processClick = (idx) => {
+		if(!this.state.started) {
+			this.setState({started: true});
+			this.getHiddenGrid(idx);
+		}
+	};
 	// Set method to build grid
-	getHiddenGrid = () => {
+	getHiddenGrid = (idxFirstClicked) => {
 		// Get grid array length
 		const gridLen = this.props.size[0] * this.props.size[1];
 		// Get options for mine placement
-		var minePlacementOpts = Array.from(Array(gridLen).keys());
+		var minePlacementOpts = Array.from(Array(gridLen).keys()).filter((x) => {return x !== idxFirstClicked;});
 		// Sample placement options
 		var placements = [];
 		for(var i = 0; i < this.props.nMines; i++) {
@@ -58,6 +70,8 @@ class Minefield extends React.Component {
 		for(i = 0; i < placements.length; i++) {
 			arrHidden[placements[i]] = this.state.kMine;
 		}
+		// Frame hidden array
+		this.setState({hiddenArray: arrHidden});
 	};
 	// Set method to count adjacent mines based on array
 	ctAdjMines = (idx,arr) => {
