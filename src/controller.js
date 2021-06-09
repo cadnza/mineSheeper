@@ -1,5 +1,6 @@
 import React from "react";
-import Minefield from "./minefield";
+import Minefield from "./Minefield";
+
 
 class Controller extends React.Component {
 	constructor() {
