@@ -1,7 +1,6 @@
 import React from "react";
 import Minefield from "./Minefield";
 
-
 class Controller extends React.Component {
 	constructor() {
 		super();
