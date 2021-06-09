@@ -20,7 +20,9 @@ class Difficulty extends React.Component {
 	}
 	render() {
 		const stdWidth = this.state.buttonWidth + this.state.buttonUnit;
-		const stdWidthAdj = (this.state.buttonWidth * this.state.wideButtonMultiplier) + this.state.buttonUnit;
+		const stdWidthAdj = (
+			this.state.buttonWidth * this.state.wideButtonMultiplier
+		) + this.state.buttonUnit;
 		var buttons = this.state.options.map(
 			x => {
 				const final = <div key={x[0]} className="dfButton"
@@ -37,7 +39,7 @@ class Difficulty extends React.Component {
 			}
 		);
 		buttons.push(
-			<div><button id="emoji" disabled></button></div>
+			<div key="emoji"><button id="emoji" disabled></button></div>
 		);
 		var final = <div>
 			<div
