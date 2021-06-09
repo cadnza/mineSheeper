@@ -1,7 +1,7 @@
 import React from "react";
 import Minefield from "./minefield";
 
-class Difficulty extends React.Component {
+class Controller extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -60,4 +60,4 @@ class Difficulty extends React.Component {
 	}
 }
 
-export default Difficulty;
+export default Controller;

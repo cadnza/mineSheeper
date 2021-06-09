@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Difficulty from "./controller.js";
+import Controller from "./controller.js";
 
-ReactDOM.render(<Difficulty />,document.getElementById("game"));
+ReactDOM.render(<Controller />,document.getElementById("game"));
