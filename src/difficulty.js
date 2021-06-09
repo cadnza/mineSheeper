@@ -13,20 +13,17 @@ class Difficulty extends React.Component {
 				["C",[20,20],60],
 				["D",[20,30],90]
 			],
-			buttonWidth: 0.2,
-			buttonUnit: "in"
+			buttonWidth: 0.21,
+			buttonUnit: "in",
+			wideButtonMultiplier: 2
 		};
 	}
 	render() {
-		const buttons = this.state.options.map(
+		const stdWidth = this.state.buttonWidth + this.state.buttonUnit;
+		const stdWidthAdj = (this.state.buttonWidth * this.state.wideButtonMultiplier) + this.state.buttonUnit;
+		var buttons = this.state.options.map(
 			x => {
-				const final = <div
-					key={x[0]}
-					className="dfButton"
-					style={{
-						height: this.state.buttonWidth + this.state.buttonUnit,
-						width: (this.state.buttonWidth * 2) + this.state.buttonUnit
-					}}
+				const final = <div key={x[0]} className="dfButton"
 				>
 					<button
 						onClick={
@@ -39,8 +36,18 @@ class Difficulty extends React.Component {
 				return final;
 			}
 		);
+		buttons.push(
+			<div><button id="emoji" disabled></button></div>
+		);
 		var final = <div>
-			<div id="difficulty">{buttons}</div>
+			<div
+				id="difficulty"
+				style={{
+					display: "grid",
+					gridTemplateRows: stdWidth,
+					gridTemplateColumns: "repeat(4, " + stdWidthAdj + ") " + stdWidth
+				}}
+			>{buttons}</div>
 			<Minefield
 				size={this.state.size}
 				nMines={this.state.nMines}

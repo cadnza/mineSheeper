@@ -27,6 +27,7 @@ class Minefield extends React.Component {
 		var final = <div
 			id="mines"
 			style={{
+				display: "grid",
 				gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
 				gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
 			}}
