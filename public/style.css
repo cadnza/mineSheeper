@@ -1,7 +1,5 @@
 #difficulty {
 	width: 3in;
-}
-#dfButtonHolder {
 	display: grid;
 	grid-auto-flow: column;
 }
