@@ -47,6 +47,11 @@ class Minefield extends React.Component {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
 		}
+		const adjSquares = this.getAdjSquares(idx);
+		const btnFocus = document.getElementById("btn" + idx);
+		btnFocus.disabled = true;
+		btnFocus.innerText = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid.
+		btnFocus.innerText = "x";
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {
@@ -70,11 +75,63 @@ class Minefield extends React.Component {
 		for(i = 0; i < placements.length; i++) {
 			arrHidden[placements[i]] = this.state.kMine;
 		}
+		// Add counts to non-mine fields in hidden array
+		for(i = 0; i < arrHidden.length; i++) {
+			if(typeof arrHidden[i] === "undefined") {
+				const ctMines = this.getAdjSquares(i).filter((x) => {return x === this.kMine;}).length;
+				arrHidden[i] = ctMines;
+			}
+		}
 		// Frame hidden array
 		this.setState({hiddenArray: arrHidden});
 	};
-	// Set method to count adjacent mines based on array
-	ctAdjMines = (idx,arr) => {
+	// Set method to get adjacent mines from index
+	getAdjSquares = (idxRaw) => {
+		// Open array for adjacent squares
+		var final = [];
+		// Convert to a 1 basis for simplicity
+		const idx = idxRaw + 1;
+		// Check edge orientation
+		const isUpper = idx <= this.props.size[1];
+		const isRight = idx % this.props.size[1] === 0;
+		const isLower = idx > (this.props.size[0] - 1) * this.props.size[1];
+		const isLeftt = idx % this.props.size[1] === 1;
+		// Get upper left
+		if(!isUpper && !isLeftt) {
+			final.push(idx - this.props.size[0] - 1);
+		}
+		// Get upper
+		if(!isUpper) {
+			final.push(idx - this.props.size[0]);
+		}
+		// Get upper right
+		if(!isUpper && !isRight) {
+			final.push(idx - this.props.size[0] + 1);
+		}
+		// Get left
+		if(!isLeftt) {
+			final.push(idx - 1);
+		}
+		// Get right
+		if(!isRight) {
+			final.push(idx + 1);
+		}
+		// Get lower left
+		if(!isLower && !isLeftt) {
+			final.push(idx + this.props.size[0] - 1);
+		}
+		// Get lower
+		if(!isLower) {
+			final.push(idx + this.props.size[0]);
+		}
+		// Get lower right
+		if(!isLower && !isRight) {
+			final.push(idx + this.props.size[0] + 1);
+		}
+		// Convert back to 0 basis
+		final = final.map((x) => {return x - 1;});
+		// Return
+		return final;
 	};
 }
 
