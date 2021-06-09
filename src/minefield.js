@@ -10,11 +10,33 @@ class Minefield extends React.Component {
 		};
 	}
 	render() {
-		this.buildGrid();
-		return <div>{this.props.size}</div>;
+		const final = this.buildUI();
+		return final;
 	}
+	// Set method to build UI
+	buildUI = () => {
+		const gridLen = this.props.size[0] * this.props.size[1];
+		var mineButtons = [];
+		for(var i = 0; i < gridLen; i++) {
+			mineButtons.push(
+				<div>
+					<button class="mineButton" id={"btn" + i}></button>
+				</div>
+			);
+		}
+		var final = <div
+			id="mines"
+			style={{
+				gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
+				gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
+			}}
+		>
+			{mineButtons}
+		</div>;
+		return final;
+	};
 	// Set method to build grid
-	buildGrid = () => {
+	getHiddenGrid = () => {
 		// Get grid array length
 		const gridLen = this.props.size[0] * this.props.size[1];
 		// Get options for mine placement
@@ -32,7 +54,7 @@ class Minefield extends React.Component {
 		// Open array representing hidden grid
 		var arrHidden = Array(gridLen);
 		// Add mines to hidden array
-		for(var i = 0; i < placements.length; i++) {
+		for(i = 0; i < placements.length; i++) {
 			arrHidden[placements[i]] = this.state.kMine;
 		}
 	};

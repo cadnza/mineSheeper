@@ -12,13 +12,22 @@ class Difficulty extends React.Component {
 				["B",[15,15],33],
 				["C",[20,20],60],
 				["D",[20,30],90]
-			]
+			],
+			buttonWidth: 0.2,
+			buttonUnit: "in"
 		};
 	}
 	render() {
 		const buttons = this.state.options.map(
 			x => {
-				const final = <div key={x[0]} className="dfButton">
+				const final = <div
+					key={x[0]}
+					className="dfButton"
+					style={{
+						height: this.state.buttonWidth + this.state.buttonUnit,
+						width: (this.state.buttonWidth * 2) + this.state.buttonUnit
+					}}
+				>
 					<button
 						onClick={
 							() => {this.setState({size: x[1],nMines: x[2]});}
@@ -32,7 +41,11 @@ class Difficulty extends React.Component {
 		);
 		var final = <div>
 			<div id="difficulty">{buttons}</div>
-			<Minefield size={this.state.size} nMines={this.state.nMines} />
+			<Minefield
+				size={this.state.size}
+				nMines={this.state.nMines}
+				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
+			/>
 		</div>;
 		return final;
 	}
