@@ -8,7 +8,8 @@ class Minefield extends React.Component {
 			started: false,
 			kMine: 9,
 			kFlag: 10,
-			kQuestion: 11
+			kQuestion: 11,
+			btnClassIdPrefix: "btn"
 		};
 	}
 	render() {
@@ -17,14 +18,27 @@ class Minefield extends React.Component {
 	}
 	// Set method to build UI
 	buildUI = () => {
+		// Get grid array length
 		const gridLen = this.props.size[0] * this.props.size[1];
+		// Open and populate array for grid buttons
 		var mineButtons = [];
 		for(var i = 0; i < gridLen; i++) {
 			const buttonIdx = i;
+			const btnId = this.state.btnClassIdPrefix + buttonIdx;
 			mineButtons.push(
-				<GridSquare key={i} idx={buttonIdx} clickHandler={() => this.processSquareClick(buttonIdx)} />
+				<GridSquare
+					key={i}
+					ref={btnId}
+					btnId={btnId}
+					idx={buttonIdx}
+					clickHandler={() => this.processSquareClick(buttonIdx)}
+					unclickedText={""}
+				/>
 			);
 		}
+		// Reset all mine buttons (in case any have already been clicked)
+		Object.keys(this.refs).map((x) => {return this.refs[x].reset();});
+		// Set mine buttons into div
 		var final = <div
 			id="mines"
 			style={{
@@ -35,6 +49,7 @@ class Minefield extends React.Component {
 		>
 			{mineButtons}
 		</div>;
+		// Return
 		return final;
 	};
 	processSquareClick = (idx) => {
@@ -42,7 +57,7 @@ class Minefield extends React.Component {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
 		}
-		const btnFocus = document.getElementById("btn" + idx);
+		const btnFocus = document.getElementById(this.state.btnClassIdPrefix + idx);
 		const revealedVal = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid. //TEMP
 		btnFocus.disabled = true;
 		btnFocus.innerText = revealedVal;

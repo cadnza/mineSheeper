@@ -5,11 +5,20 @@ class GridSquare extends React.Component {
 		const final = <div>
 			<button
 				className="mineButton"
-				id={"btn" + this.props.idx}
-				onClick={this.props.clickHandler}
-			/>
+				id={this.props.btnId}
+				onClick={() => {
+					this.props.clickHandler();
+				}}
+			>
+				{this.props.unclickedText}
+			</button>
 		</div>;
 		return final;
+	}
+	reset() {
+		const btnRef = document.getElementById(this.props.btnId);
+		btnRef.innerText = this.props.unclickedText;
+		btnRef.disabled = false;
 	}
 }
 
