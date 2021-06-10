@@ -22,7 +22,7 @@ class Minefield extends React.Component {
 		for(var i = 0; i < gridLen; i++) {
 			const buttonIdx = i;
 			mineButtons.push(
-				<GridSquare key={i} idx={buttonIdx} />
+				<GridSquare key={i} idx={buttonIdx} clickHandler={() => this.processSquareClick(buttonIdx)} />
 			);
 		}
 		var final = <div
@@ -36,6 +36,17 @@ class Minefield extends React.Component {
 			{mineButtons}
 		</div>;
 		return final;
+	};
+	processSquareClick = (idx) => {
+		if(!this.state.started) {
+			this.setState({started: true});
+			this.getHiddenGrid(idx);
+		}
+		const btnFocus = document.getElementById("btn" + idx);
+		const revealedVal = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid. //TEMP
+		btnFocus.disabled = true;
+		btnFocus.innerText = revealedVal;
+		btnFocus.innerText = "x";
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {
