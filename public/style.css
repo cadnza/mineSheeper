@@ -7,6 +7,13 @@ button {
 	width: 100%;
 	height: 100%;
 }
-body {
-	background-color: whitesmoke;
+body,
+button {
+	background-color: black;
+}
+button:disabled {
+	background-color: #222222;
+}
+* {
+	color: darkgrey;
 }
