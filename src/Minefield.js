@@ -70,6 +70,7 @@ class Minefield extends React.Component {
 					btnId={btnId}
 					idx={buttonIdx}
 					clickHandler={() => this.processSquareClick(buttonIdx)}
+					rightClickHandler={() => this.processSquareRightClick(buttonIdx)}
 					unclickedText={""}
 				/>
 			);
@@ -112,6 +113,9 @@ class Minefield extends React.Component {
 		var newListButtonsClicked = this.state.buttonsClicked;
 		newListButtonsClicked.push(idx);
 		this.setState({buttonsClicked: newListButtonsClicked});
+	};
+	processSquareRightClick = (idx) => {
+		return false;
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {

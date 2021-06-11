@@ -20,6 +20,11 @@ class GridSquare extends React.Component {
 					this.setState({clicked: true});
 					this.props.clickHandler();
 				}}
+				onContextMenu={(event) => {
+					event.preventDefault();
+					this.props.rightClickHandler();
+					return false;
+				}}
 			>
 				{this.props.unclickedText}
 			</button>
