@@ -12,6 +12,9 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn"
 		};
 	}
+	shouldComponentUpdate(nextProps,nextState) {
+		return this.state.started;
+	}
 	render() {
 		const final = this.buildUI();
 		return final;
