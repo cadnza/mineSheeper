@@ -4,7 +4,8 @@ class GridSquare extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			clicked: false
+			clicked: false,
+			text: this.props.unclickedText
 		};
 	}
 	shouldComponentUpdate(prevState) {
@@ -26,21 +27,20 @@ class GridSquare extends React.Component {
 					return false;
 				}}
 			>
-				{this.props.unclickedText}
+				{this.state.text}
 			</button>
 		</div>;
 		return final;
 	}
-	setInnerText = (text) => {
-		const btnRef = document.getElementById(this.props.btnId);
-		btnRef.innerText = text;
+	setInnerText = (x) => {
+		this.setState({text: x});
 	};
 	reveal = (text) => {
 		this.setInnerText(text);
 		this.setState({clicked: true});
 	};
 	cover = () => {
-		this.setEmpty();
+		this.setOriginalText();
 		this.setState({clicked: false});
 	};
 	flag = () => {
@@ -49,7 +49,7 @@ class GridSquare extends React.Component {
 	question = () => {
 		this.setInnerText(this.props.kQuestion);
 	};
-	setEmpty = () => {
+	setOriginalText = () => {
 		this.setInnerText(this.props.unclickedText);
 	};
 }
