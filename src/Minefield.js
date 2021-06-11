@@ -12,12 +12,14 @@ class Minefield extends React.Component {
 			kMine: 9,
 			kFlag: 10,
 			kQuestion: 11,
-			btnClassIdPrefix: "btn"
+			btnClassIdPrefix: "btn",
+			resetIsQueued: false
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
 		if(this.props.uniqueId !== prevProps.uniqueId) {
-			this.resetGame();
+			this.setState({resetIsQueued: true});
+			this.resetGameProperties();
 		}
 		//console.log(this.state.buttonsClicked); //TEMP
 		return null;
@@ -30,6 +32,11 @@ class Minefield extends React.Component {
 		return final;
 	}
 	componentDidUpdate(prevProps) {
+		// Reset game if reset is queued
+		if(this.state.resetIsQueued) {
+			this.resetGameUi();
+			this.setState({resetIsQueued: false});
+		}
 		// Reveal last clicked button with adjacent buttons if its a 0
 		const revealRecursive = (idx,exclude = []) => {
 			if(this.state.hiddenArray[idx] === 0) {
@@ -95,7 +102,15 @@ class Minefield extends React.Component {
 		// Return
 		return final;
 	};
-	resetGame = () => {
+	resetGameProperties = () => {
+		// Reset game state parameters
+		this.setState({
+			started: false,
+			hiddenArray: [],
+			buttonsClicked: []
+		});
+	};
+	resetGameUi = () => {
 		// Check whether cell reset is necessary
 		const allButtonRefs = this.getAllButtonRefs();
 		const gridReady = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
@@ -104,12 +119,6 @@ class Minefield extends React.Component {
 			// Reset individual buttons
 			allButtonRefs.map(x => {return x.cover();});
 		}
-		// Reset game state parameters
-		this.setState({
-			started: false,
-			hiddenArray: [],
-			buttonsClicked: []
-		});
 	};
 	processSquareClick = (idx) => {
 		// Return true for successful click and false for unsuccessful click (e.g. when trying to click a flagged box)
