@@ -17,6 +17,7 @@ class Minefield extends React.Component {
 		if(this.props.uniqueId !== prevProps.uniqueId) {
 			this.resetGame();
 		}
+		//console.log(this.state.buttonsClicked); //TEMP
 		return null;
 	}
 	shouldComponentUpdate() {
@@ -129,7 +130,9 @@ class Minefield extends React.Component {
 		// Add counts to non-mine fields in hidden array
 		for(i = 0; i < arrHidden.length; i++) {
 			if(typeof arrHidden[i] === "undefined") {
-				const ctMines = this.getAdjSquares(i).filter(x => {return x === this.kMine;}).length;
+				const adjs = this.getAdjSquares(i);
+				const adjVals = adjs.map(x => {return arrHidden[x];});
+				const ctMines = adjVals.filter(x => {return x === this.state.kMine;}).length;
 				arrHidden[i] = ctMines;
 			}
 		}
