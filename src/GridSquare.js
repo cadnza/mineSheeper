@@ -17,8 +17,8 @@ class GridSquare extends React.Component {
 				id={this.props.btnId}
 				disabled={this.state.clicked}
 				onClick={() => {
-					this.setState({clicked: true});
-					this.props.clickHandler();
+					const successfulClick = this.props.clickHandler();
+					this.setState({clicked: successfulClick});
 				}}
 				onContextMenu={(event) => {
 					event.preventDefault();

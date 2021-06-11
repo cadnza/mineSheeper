@@ -112,6 +112,10 @@ class Minefield extends React.Component {
 		});
 	};
 	processSquareClick = (idx) => {
+		// Return true for successful click and false for unsuccessful click (e.g. when trying to click a flagged box)
+		if(this.state.buttonsFlagged.includes(idx) || this.state.buttonsQuestioned.includes(idx)) {
+			return false;
+		}
 		if(!this.state.started) {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
@@ -119,6 +123,7 @@ class Minefield extends React.Component {
 		var newList = this.state.buttonsClicked;
 		newList.push(idx);
 		this.setState({buttonsClicked: newList});
+		return true;
 	};
 	processSquareRightClick = (idx) => {
 		// Open new list
