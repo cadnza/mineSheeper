@@ -26,6 +26,7 @@ class GridSquare extends React.Component {
 		const btnRef = document.getElementById(this.props.btnId);
 		btnRef.disabled = true;
 		btnRef.innerText = text;
+		this.setState({clicked: true});
 	};
 	cover = () => {
 		const btnRef = document.getElementById(this.props.btnId);
