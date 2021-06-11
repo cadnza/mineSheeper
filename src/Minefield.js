@@ -114,9 +114,9 @@ class Minefield extends React.Component {
 	resetGameUi = () => {
 		// Check whether cell reset is necessary
 		const allButtonRefs = this.getAllButtonRefs();
-		const gridReady = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
+		const gridIsUnclicked = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
 		// Perform cell reset if necessary
-		if(!gridReady) {
+		if(!gridIsUnclicked) {
 			// Reset individual buttons
 			allButtonRefs.map(x => {return x.cover();});
 		}
