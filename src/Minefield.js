@@ -71,9 +71,9 @@ class Minefield extends React.Component {
 			this.getHiddenGrid(idx);
 		}
 		const btnFocus = document.getElementById(this.state.btnClassIdPrefix + idx);
-		const revealedVal = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid. //TEMP
+		//const revealedVal = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid. //TEMP
 		btnFocus.disabled = true;
-		btnFocus.innerText = revealedVal;
+		//btnFocus.innerText = revealedVal; //Uncomment //TEMP
 		btnFocus.innerText = "x";
 	};
 	// Set method to build grid
