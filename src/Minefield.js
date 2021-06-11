@@ -27,16 +27,23 @@ class Minefield extends React.Component {
 		return final;
 	}
 	componentDidUpdate(prevProps) {
-		// Reveal all buttons that have been clicked
-		const allButtonRefs = this.getAllButtonRefs();
-		this.state.buttonsClicked.map(
-			x => {
-				if(x < allButtonRefs.length) {
-					allButtonRefs[x].reveal(this.state.hiddenArray[x]);
-				}
-				return null;
+		// Reveal last clicked button with adjacent buttons if its a 0
+		const revealRecursive = (idx,exclude = []) => {
+			if(this.state.hiddenArray[idx] === 0) {
+				var adjs = this.getAdjSquares(idx);
+				exclude.push(idx);
+				adjs = adjs.filter(x => {return !exclude.includes(x);});
+				adjs.map(x => {return revealRecursive(x,exclude);});
 			}
-		);
+			const allButtonRefs = this.getAllButtonRefs();
+			if(idx < allButtonRefs.length) {
+				allButtonRefs[idx].reveal(this.state.hiddenArray[idx]);
+			}
+			return null;
+		};
+		const lastClicked = this.state.buttonsClicked[this.state.buttonsClicked.length - 1];
+		revealRecursive(lastClicked);
+		return null;
 	}
 	// Set method to get all child refs that are buttons
 	getAllButtonRefs = () => {
