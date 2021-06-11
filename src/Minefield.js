@@ -6,7 +6,7 @@ class Minefield extends React.Component {
 		super(props);
 		this.state = {
 			started: false,
-			buttonsClicked: [],
+			buttonLastClicked: null,
 			buttonsFlagged: [],
 			buttonsQuestioned: [],
 			kMine: 9,
@@ -52,9 +52,8 @@ class Minefield extends React.Component {
 			}
 			return null;
 		};
-		const lastClicked = this.state.buttonsClicked[this.state.buttonsClicked.length - 1];
 		if(this.state.started) {
-			revealRecursive(lastClicked);
+			revealRecursive(this.state.buttonLastClicked);
 		}
 		// Return
 		return null;
@@ -108,7 +107,7 @@ class Minefield extends React.Component {
 		this.setState({
 			started: false,
 			hiddenArray: [],
-			buttonsClicked: []
+			buttonLastClicked: []
 		});
 	};
 	resetGameUi = () => {
@@ -130,9 +129,7 @@ class Minefield extends React.Component {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
 		}
-		var newList = this.state.buttonsClicked;
-		newList.push(idx);
-		this.setState({buttonsClicked: newList});
+		this.setState({buttonLastClicked: idx});
 		return true;
 	};
 	processSquareRightClick = (idx) => {
