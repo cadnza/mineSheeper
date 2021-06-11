@@ -7,11 +7,15 @@ class GridSquare extends React.Component {
 			clicked: false
 		};
 	}
+	shouldComponentUpdate(prevState) {
+		return this.state.clicked;
+	}
 	render() {
 		const final = <div>
 			<button
 				className="mineButton"
 				id={this.props.btnId}
+				disabled={this.state.clicked}
 				onClick={() => {
 					this.setState({clicked: true});
 					this.props.clickHandler();
@@ -22,16 +26,16 @@ class GridSquare extends React.Component {
 		</div>;
 		return final;
 	}
-	mark = (text) => {
+	setInnerText = (text) => {
 		const btnRef = document.getElementById(this.props.btnId);
-		btnRef.disabled = true;
 		btnRef.innerText = text;
+	};
+	mark = (text) => {
+		this.setInnerText(text);
 		this.setState({clicked: true});
 	};
 	cover = () => {
-		const btnRef = document.getElementById(this.props.btnId);
-		btnRef.innerText = this.props.unclickedText;
-		btnRef.disabled = false;
+		this.setInnerText(this.props.unclickedText);
 		this.setState({clicked: false});
 	};
 }

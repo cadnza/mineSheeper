@@ -80,8 +80,6 @@ class Minefield extends React.Component {
 		return final;
 	};
 	resetGame = () => {
-		// Reset array of clicked buttons
-		this.setState({buttonsClicked: []});
 		// Check whether cell reset is necessary
 		const allButtonRefs = this.getAllButtonRefs();
 		const gridReady = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
@@ -90,8 +88,12 @@ class Minefield extends React.Component {
 			// Reset individual buttons
 			allButtonRefs.map(x => {return x.cover();});
 		}
-		// Set game start state to false
-		this.setState({started: false,hiddenArray: []});
+		// Reset game state parameters
+		this.setState({
+			started: false,
+			hiddenArray: [],
+			buttonsClicked: []
+		});
 	};
 	processSquareClick = (idx) => {
 		if(!this.state.started) {
