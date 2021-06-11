@@ -13,7 +13,13 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn"
 		};
 	}
-	shouldComponentUpdate(nextProps) {
+	getSnapshotBeforeUpdate(prevProps) {
+		if(this.props.uniqueId !== prevProps.uniqueId) {
+			this.resetGame();
+		}
+		return null;
+	}
+	shouldComponentUpdate() {
 		return true;
 	}
 	render() {
@@ -21,11 +27,16 @@ class Minefield extends React.Component {
 		return final;
 	}
 	componentDidUpdate(prevProps) {
-		if(this.props.uniqueId !== prevProps.uniqueId) {
-			this.resetGame();
-		}
+		// Mark all buttons that have been clicked
 		const allButtonRefs = this.getAllButtonRefs();
-		this.state.buttonsClicked.map(x => {return allButtonRefs[x].mark(this.state.hiddenArray[x]);});
+		this.state.buttonsClicked.map(
+			x => {
+				if(x < allButtonRefs.length) {
+					allButtonRefs[x].mark(this.state.hiddenArray[x]);
+				}
+				return null;
+			}
+		);
 	}
 	// Set method to get all child refs that are buttons
 	getAllButtonRefs = () => {
@@ -80,7 +91,7 @@ class Minefield extends React.Component {
 			allButtonRefs.map(x => {return x.cover();});
 		}
 		// Set game start state to false
-		this.setState({started: false});
+		this.setState({started: false,hiddenArray: []});
 	};
 	processSquareClick = (idx) => {
 		if(!this.state.started) {
