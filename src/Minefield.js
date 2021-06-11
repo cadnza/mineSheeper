@@ -14,8 +14,10 @@ class Minefield extends React.Component {
 	}
 	render() {
 		const final = this.buildUI();
-		this.resetGame();
 		return final;
+	}
+	componentDidUpdate() {
+		this.resetGame();
 	}
 	// Set method to build UI
 	buildUI = () => {
@@ -52,12 +54,12 @@ class Minefield extends React.Component {
 		return final;
 	};
 	resetGame = () => {
-		// Check whether reset is necessary
+		// Check whether cell reset is necessary
 		const allButtonRefs = Object.keys(this.refs).filter(
 			x => {return x.match("^" + this.state.btnClassIdPrefix);}
 		).map(x => {return this.refs[x];});
 		const gridReady = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
-		// Perform reset if necessary
+		// Perform cell reset if necessary
 		if(!gridReady) {
 			// Reset individual buttons
 			allButtonRefs.map(x => {return x.reset();});
