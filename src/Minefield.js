@@ -31,7 +31,7 @@ class Minefield extends React.Component {
 		return final;
 	}
 	componentDidUpdate(prevProps) {
-		// Reset game if reset is queued
+		// Reset game if queued
 		if(this.state.resetIsQueued) {
 			this.resetGameUi();
 			this.setState({resetIsQueued: false});
