@@ -17,10 +17,12 @@ class Minefield extends React.Component {
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
+		// Queue game reset if new grid
 		if(this.props.uniqueId !== prevProps.uniqueId) {
 			this.setState({resetIsQueued: true});
 			this.resetGameProperties();
 		}
+		// Return
 		return null;
 	}
 	shouldComponentUpdate() {
