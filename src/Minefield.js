@@ -6,23 +6,34 @@ class Minefield extends React.Component {
 		super(props);
 		this.state = {
 			started: false,
+			buttonsClicked: [],
 			kMine: 9,
 			kFlag: 10,
 			kQuestion: 11,
 			btnClassIdPrefix: "btn"
 		};
 	}
-	shouldComponentUpdate(nextProps,nextState) {
-		return this.state.started;
+	shouldComponentUpdate(nextProps) {
+		return true;
 	}
 	render() {
 		const final = this.buildUI();
 		return final;
 	}
-	componentDidUpdate() {
-		this.resetGame();
-		this.setState({started: false});
+	componentDidUpdate(prevProps) {
+		if(this.props.uniqueId !== prevProps.uniqueId) {
+			this.resetGame();
+		}
+		const allButtonRefs = this.getAllButtonRefs();
+		this.state.buttonsClicked.map(x => {return allButtonRefs[x].mark(this.state.hiddenArray[x]);});
 	}
+	// Set method to get all child refs that are buttons
+	getAllButtonRefs = () => {
+		const final = Object.keys(this.refs).filter(
+			x => {return x.match("^" + this.state.btnClassIdPrefix);}
+		).map(x => {return this.refs[x];});
+		return final;
+	};
 	// Set method to build UI
 	buildUI = () => {
 		// Get grid array length
@@ -58,27 +69,27 @@ class Minefield extends React.Component {
 		return final;
 	};
 	resetGame = () => {
+		// Reset array of clicked buttons
+		this.setState({buttonsClicked: []});
 		// Check whether cell reset is necessary
-		const allButtonRefs = Object.keys(this.refs).filter(
-			x => {return x.match("^" + this.state.btnClassIdPrefix);}
-		).map(x => {return this.refs[x];});
+		const allButtonRefs = this.getAllButtonRefs();
 		const gridReady = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
 		// Perform cell reset if necessary
 		if(!gridReady) {
 			// Reset individual buttons
-			allButtonRefs.map(x => {return x.reset();});
+			allButtonRefs.map(x => {return x.cover();});
 		}
+		// Set game start state to false
+		this.setState({started: false});
 	};
 	processSquareClick = (idx) => {
 		if(!this.state.started) {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
 		}
-		const btnFocus = document.getElementById(this.state.btnClassIdPrefix + idx);
-		//const revealedVal = this.state.hiddenArray[idx]; // This is causing trouble because we're setting this.state.hiddenArray in this.getHiddenGrid. //TEMP
-		btnFocus.disabled = true;
-		//btnFocus.innerText = revealedVal; //Uncomment //TEMP
-		btnFocus.innerText = "x";
+		var newListButtonsClicked = this.state.buttonsClicked;
+		newListButtonsClicked.push(idx);
+		this.setState({buttonsClicked: newListButtonsClicked});
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {

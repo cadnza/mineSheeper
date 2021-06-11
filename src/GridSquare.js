@@ -22,7 +22,12 @@ class GridSquare extends React.Component {
 		</div>;
 		return final;
 	}
-	reset = () => {
+	mark = (text) => {
+		const btnRef = document.getElementById(this.props.btnId);
+		btnRef.disabled = true;
+		btnRef.innerText = text;
+	};
+	cover = () => {
 		const btnRef = document.getElementById(this.props.btnId);
 		btnRef.innerText = this.props.unclickedText;
 		btnRef.disabled = false;

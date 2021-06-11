@@ -54,6 +54,7 @@ class Controller extends React.Component {
 				size={this.state.size}
 				nMines={this.state.nMines}
 				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
+				uniqueId={Math.random()}
 			/>
 		</div>;
 		return final;
