@@ -17,6 +17,7 @@ class Minefield extends React.Component {
 		if(this.props.uniqueId !== prevProps.uniqueId) {
 			this.resetGame();
 		}
+		console.log(this.state.buttonsClicked); //TEMP
 		return null;
 	}
 	shouldComponentUpdate() {
@@ -43,6 +44,7 @@ class Minefield extends React.Component {
 		};
 		const lastClicked = this.state.buttonsClicked[this.state.buttonsClicked.length - 1];
 		revealRecursive(lastClicked);
+		// Return
 		return null;
 	}
 	// Set method to get all child refs that are buttons
