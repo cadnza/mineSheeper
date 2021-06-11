@@ -158,15 +158,15 @@ class Minefield extends React.Component {
 		const isLeftt = idx % this.props.size[1] === 1;
 		// Get upper left
 		if(!isUpper && !isLeftt) {
-			final.push(idx - this.props.size[0] - 1);
+			final.push(idx - this.props.size[1] - 1);
 		}
 		// Get upper
 		if(!isUpper) {
-			final.push(idx - this.props.size[0]);
+			final.push(idx - this.props.size[1]);
 		}
 		// Get upper right
 		if(!isUpper && !isRight) {
-			final.push(idx - this.props.size[0] + 1);
+			final.push(idx - this.props.size[1] + 1);
 		}
 		// Get left
 		if(!isLeftt) {
@@ -178,15 +178,15 @@ class Minefield extends React.Component {
 		}
 		// Get lower left
 		if(!isLower && !isLeftt) {
-			final.push(idx + this.props.size[0] - 1);
+			final.push(idx + this.props.size[1] - 1);
 		}
 		// Get lower
 		if(!isLower) {
-			final.push(idx + this.props.size[0]);
+			final.push(idx + this.props.size[1]);
 		}
 		// Get lower right
 		if(!isLower && !isRight) {
-			final.push(idx + this.props.size[0] + 1);
+			final.push(idx + this.props.size[1] + 1);
 		}
 		// Convert back to 0 basis
 		final = final.map(x => {return x - 1;});
