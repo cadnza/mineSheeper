@@ -30,7 +30,7 @@ class GridSquare extends React.Component {
 		const btnRef = document.getElementById(this.props.btnId);
 		btnRef.innerText = text;
 	};
-	mark = (text) => {
+	reveal = (text) => {
 		this.setInnerText(text);
 		this.setState({clicked: true});
 	};

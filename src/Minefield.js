@@ -27,12 +27,12 @@ class Minefield extends React.Component {
 		return final;
 	}
 	componentDidUpdate(prevProps) {
-		// Mark all buttons that have been clicked
+		// Reveal all buttons that have been clicked
 		const allButtonRefs = this.getAllButtonRefs();
 		this.state.buttonsClicked.map(
 			x => {
 				if(x < allButtonRefs.length) {
-					allButtonRefs[x].mark(this.state.hiddenArray[x]);
+					allButtonRefs[x].reveal(this.state.hiddenArray[x]);
 				}
 				return null;
 			}
