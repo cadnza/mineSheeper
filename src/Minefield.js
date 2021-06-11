@@ -21,7 +21,6 @@ class Minefield extends React.Component {
 			this.setState({resetIsQueued: true});
 			this.resetGameProperties();
 		}
-		//console.log(this.state.buttonsClicked); //TEMP
 		return null;
 	}
 	shouldComponentUpdate() {
