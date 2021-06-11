@@ -17,7 +17,6 @@ class Minefield extends React.Component {
 		if(this.props.uniqueId !== prevProps.uniqueId) {
 			this.resetGame();
 		}
-		//console.log(this.state.buttonsClicked); //TEMP
 		return null;
 	}
 	shouldComponentUpdate() {
