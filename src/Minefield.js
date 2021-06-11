@@ -160,7 +160,7 @@ class Minefield extends React.Component {
 		// Empty if questioned
 		if(this.state.buttonsQuestioned.includes(idx)) {
 			this.setState({buttonsQuestioned: this.state.buttonsQuestioned.filter(x => {return x !== idx;})});
-			allButtonRefs[idx].setEmpty();
+			allButtonRefs[idx].setOriginalText();
 			return;
 		}
 	};
