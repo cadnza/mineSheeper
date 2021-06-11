@@ -40,8 +40,17 @@ class GridSquare extends React.Component {
 		this.setState({clicked: true});
 	};
 	cover = () => {
-		this.setInnerText(this.props.unclickedText);
+		this.setEmpty();
 		this.setState({clicked: false});
+	};
+	flag = () => {
+		this.setInnerText(this.props.kFlag);
+	};
+	question = () => {
+		this.setInnerText(this.props.kQuestion);
+	};
+	setEmpty = () => {
+		this.setInnerText(this.props.unclickedText);
 	};
 }
 

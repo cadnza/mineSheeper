@@ -7,6 +7,8 @@ class Minefield extends React.Component {
 		this.state = {
 			started: false,
 			buttonsClicked: [],
+			buttonsFlagged: [],
+			buttonsQuestioned: [],
 			kMine: 9,
 			kFlag: 10,
 			kQuestion: 11,
@@ -43,7 +45,9 @@ class Minefield extends React.Component {
 			return null;
 		};
 		const lastClicked = this.state.buttonsClicked[this.state.buttonsClicked.length - 1];
-		revealRecursive(lastClicked);
+		if(this.state.started) {
+			revealRecursive(lastClicked);
+		}
 		// Return
 		return null;
 	}
@@ -69,6 +73,8 @@ class Minefield extends React.Component {
 					ref={btnId}
 					btnId={btnId}
 					idx={buttonIdx}
+					kFlag={this.state.kFlag}
+					kQuestion={this.state.kQuestion}
 					clickHandler={() => this.processSquareClick(buttonIdx)}
 					rightClickHandler={() => this.processSquareRightClick(buttonIdx)}
 					unclickedText={""}
@@ -110,12 +116,38 @@ class Minefield extends React.Component {
 			this.setState({started: true});
 			this.getHiddenGrid(idx);
 		}
-		var newListButtonsClicked = this.state.buttonsClicked;
-		newListButtonsClicked.push(idx);
-		this.setState({buttonsClicked: newListButtonsClicked});
+		var newList = this.state.buttonsClicked;
+		newList.push(idx);
+		this.setState({buttonsClicked: newList});
 	};
 	processSquareRightClick = (idx) => {
-		return false;
+		// Open new list
+		var newList;
+		// Get all buttons
+		const allButtonRefs = this.getAllButtonRefs();
+		// Flag if empty
+		if(!this.state.buttonsFlagged.includes(idx) && !this.state.buttonsQuestioned.includes(idx)) {
+			newList = this.state.buttonsFlagged;
+			newList.push(idx);
+			this.setState({buttonsFlagged: newList});
+			allButtonRefs[idx].flag();
+			return;
+		}
+		// Change to questioned if flagged
+		if(this.state.buttonsFlagged.includes(idx)) {
+			this.setState({buttonsFlagged: this.state.buttonsFlagged.filter(x => {return x !== idx;})});
+			newList = this.state.buttonsQuestioned;
+			newList.push(idx);
+			this.setState({buttonsQuestioned: newList});
+			allButtonRefs[idx].question();
+			return;
+		}
+		// Empty if questioned
+		if(this.state.buttonsQuestioned.includes(idx)) {
+			this.setState({buttonsQuestioned: this.state.buttonsQuestioned.filter(x => {return x !== idx;})});
+			allButtonRefs[idx].setEmpty();
+			return;
+		}
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {
