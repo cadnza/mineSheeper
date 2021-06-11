@@ -21,6 +21,7 @@ class Minefield extends React.Component {
 	}
 	componentDidUpdate() {
 		this.resetGame();
+		this.setState({started: false});
 	}
 	// Set method to build UI
 	buildUI = () => {
