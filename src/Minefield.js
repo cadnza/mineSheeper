@@ -6,6 +6,7 @@ class Minefield extends React.Component {
 		super(props);
 		this.state = {
 			started: false,
+			victoryStatus: 0, // 0 for undecided, 1 for won, 2 for lost
 			arrayHidden: [],
 			arrayVisible: [],
 			kMine: 9,
@@ -79,6 +80,7 @@ class Minefield extends React.Component {
 		// Reset game state parameters
 		this.setState({
 			started: false,
+			victoryStatus: 0,
 			arrayHidden: [],
 			arrayVisible: []
 		});
@@ -95,6 +97,10 @@ class Minefield extends React.Component {
 		}
 	};
 	processSquareClick = (idx) => {
+		// Do nothing if game has already been lost or won
+		if(this.state.victoryStatus !== 0) {
+			return;
+		}
 		// Get method for recursive reveal if revealed value is 0
 		const revealRecursive = (idx,arrVisible,arrHidden,exclude = []) => {
 			if(arrHidden[idx] === 0) {
@@ -113,6 +119,24 @@ class Minefield extends React.Component {
 			this.state.arrayVisible[idx] === this.state.kFlag ||
 			this.state.arrayVisible[idx] === this.state.kQuestion
 		) {
+			return;
+		}
+		// Reveal all mines and disable further play if revealed is mine
+		if(this.state.arrayHidden[idx] === this.state.kMine) {
+			var arrVisible = this.state.arrayVisible;
+			arrVisible = [...Array(arrVisible.length).keys()].map(i => {
+				var final;
+				if(this.state.arrayHidden[i] === this.state.kMine) {
+					final = this.state.kMine;
+				} else {
+					final = arrVisible[i];
+				}
+				return final;
+			});
+			this.setState({
+				victoryStatus: 2,
+				arrayVisible: arrVisible
+			});
 			return;
 		}
 		// Initialize hidden array and recursively reveal square if game not yet started
