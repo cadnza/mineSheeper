@@ -66,6 +66,7 @@ class Minefield extends React.Component {
 		var final = <div>
 			<div id="gameHeader">
 				{this.props.difficultyDiv}
+				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 			</div>
 			<div
 				id="mines"
@@ -268,6 +269,21 @@ class Minefield extends React.Component {
 		// Return
 		return final;
 	};
+	parseVictoryStatus() {
+		var final;
+		switch(this.state.victoryStatus) {
+			case 1:
+				final = ":-/"; //TEMP
+				break;
+			case 2:
+				final = "B-)"; //TEMP
+				break;
+			default:
+				final = ":-)"; //TEMP
+				break;
+		}
+		return final;
+	}
 }
 
 export default Minefield;
