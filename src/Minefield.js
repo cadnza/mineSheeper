@@ -6,9 +6,8 @@ class Minefield extends React.Component {
 		super(props);
 		this.state = {
 			started: false,
-			buttonLastClicked: null,
-			buttonsFlagged: [],
-			buttonsQuestioned: [],
+			arrayHidden: [],
+			arrayVisible: [],
 			kMine: 9,
 			kFlag: 10,
 			kQuestion: 11,
@@ -38,38 +37,14 @@ class Minefield extends React.Component {
 			this.resetGameUi();
 			this.setState({resetIsQueued: false});
 		}
-		// Reveal last clicked button with adjacent buttons if its a 0
-		const revealRecursive = (idx,exclude = []) => {
-			if(this.state.arrayHidden[idx] === 0) {
-				var adjs = this.getAdjSquares(idx);
-				exclude.push(idx);
-				adjs = adjs.filter(x => {return !exclude.includes(x);});
-				adjs.map(x => {return revealRecursive(x,exclude);});
-			}
-			const allButtonRefs = this.getAllButtonRefs();
-			if(idx < allButtonRefs.length) {
-				allButtonRefs[idx].reveal(this.state.arrayHidden[idx]);
-			}
-			return null;
-		};
-		if(this.state.started) {
-			revealRecursive(this.state.buttonLastClicked);
-		}
 		// Return
 		return null;
 	}
-	// Set method to get all child refs that are buttons
-	getAllButtonRefs = () => {
-		const final = Object.keys(this.refs).filter(
-			x => {return x.match("^" + this.state.btnClassIdPrefix);}
-		).map(x => {return this.refs[x];});
-		return final;
-	};
 	// Set method to build UI
 	buildUI = () => {
 		// Get grid array length
 		const gridLen = this.props.size[0] * this.props.size[1];
-		// Open and populate array for grid buttons
+		// Open and populate array for mine buttons
 		var mineButtons = [];
 		for(var i = 0; i < gridLen; i++) {
 			const buttonIdx = i;
@@ -77,14 +52,12 @@ class Minefield extends React.Component {
 			mineButtons.push(
 				<GridSquare
 					key={i}
-					ref={btnId}
 					btnId={btnId}
-					idx={buttonIdx}
 					kFlag={this.state.kFlag}
 					kQuestion={this.state.kQuestion}
 					clickHandler={() => this.processSquareClick(buttonIdx)}
 					rightClickHandler={() => this.processSquareRightClick(buttonIdx)}
-					unclickedText={""}
+					textData={this.state.arrayVisible[buttonIdx]}
 				/>
 			);
 		}
@@ -107,59 +80,80 @@ class Minefield extends React.Component {
 		this.setState({
 			started: false,
 			arrayHidden: [],
-			buttonLastClicked: []
+			arrayVisible: []
 		});
 	};
 	resetGameUi = () => {
 		// Check whether cell reset is necessary
-		const allButtonRefs = this.getAllButtonRefs();
-		const gridIsUnclicked = allButtonRefs.map(x => {return x.state.clicked;}).indexOf(true) === -1;
+		const gridIsUnclicked = this.state.arrayVisible.length === this.state.arrayVisible.filter(
+			x => {return typeof x === 'undefined';}
+		).length;
 		// Perform cell reset if necessary
 		if(!gridIsUnclicked) {
 			// Reset individual buttons
-			allButtonRefs.map(x => {return x.cover();});
+			this.setState({arrayVisible: Array(this.props.size[0] * this.props.size[1])});
 		}
 	};
 	processSquareClick = (idx) => {
-		// Return true for successful click and false for unsuccessful click (e.g. when trying to click a flagged box)
-		if(this.state.buttonsFlagged.includes(idx) || this.state.buttonsQuestioned.includes(idx)) {
-			return false;
+		// Get method for recursive reveal if revealed value is 0
+		const revealRecursive = (idx,arrVisible,arrHidden,exclude = []) => {
+			if(arrHidden[idx] === 0) {
+				var adjs = this.getAdjSquares(idx);
+				exclude.push(idx);
+				adjs = adjs.filter(x => {return !exclude.includes(x);});
+				adjs.map(x => {return revealRecursive(x,arrVisible,arrHidden,exclude);});
+			}
+			if(idx < this.props.size[0] * this.props.size[1]) {
+				arrVisible[idx] = arrHidden[idx];
+			}
+			return arrVisible;
+		};
+		// Do nothing if box is flagged or questioned
+		if(
+			this.state.arrayVisible[idx] === this.state.kFlag ||
+			this.state.arrayVisible[idx] === this.state.kQuestion
+		) {
+			return;
 		}
+		// Initialize hidden array and recursively reveal square if game not yet started
 		if(!this.state.started) {
 			this.setState({started: true});
-			this.getHiddenGrid(idx);
+			const arrHidden = this.getHiddenGrid(idx);
+			const arrVisible = revealRecursive(idx,Array(this.props.size[0] * this.props.size[1]),arrHidden);
+			this.setState({arrayVisible: arrVisible});
 		}
-		this.setState({buttonLastClicked: idx});
-		return true;
+		// Perform normal click otherwise
+		else {
+			const arrVisible = revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
+			this.setState({
+				arrayVisible: arrVisible,
+			});
+		}
+		// Return
+		return;
 	};
 	processSquareRightClick = (idx) => {
-		// Open new list
-		var newList;
-		// Get all buttons
-		const allButtonRefs = this.getAllButtonRefs();
+		// Copy visible array to new array
+		var newList = this.state.arrayVisible;
+		// Get new value for temporary storage
+		var newVal;
 		// Flag if empty
-		if(!this.state.buttonsFlagged.includes(idx) && !this.state.buttonsQuestioned.includes(idx)) {
-			newList = this.state.buttonsFlagged;
-			newList.push(idx);
-			this.setState({buttonsFlagged: newList});
-			allButtonRefs[idx].flag();
-			return;
+		if(typeof this.state.arrayVisible[idx] === "undefined") {
+			newVal = this.state.kFlag;
 		}
 		// Change to questioned if flagged
-		if(this.state.buttonsFlagged.includes(idx)) {
-			this.setState({buttonsFlagged: this.state.buttonsFlagged.filter(x => {return x !== idx;})});
-			newList = this.state.buttonsQuestioned;
-			newList.push(idx);
-			this.setState({buttonsQuestioned: newList});
-			allButtonRefs[idx].question();
-			return;
+		else if(this.state.arrayVisible[idx] === this.state.kFlag) {
+			newVal = this.state.kQuestion;
 		}
 		// Empty if questioned
-		if(this.state.buttonsQuestioned.includes(idx)) {
-			this.setState({buttonsQuestioned: this.state.buttonsQuestioned.filter(x => {return x !== idx;})});
-			allButtonRefs[idx].setOriginalText();
-			return;
+		else if(this.state.arrayVisible[idx] === this.state.kQuestion) {
+			newVal = undefined;
 		}
+		// Update visible array
+		newList[idx] = newVal;
+		this.setState({arrayVisible: newList});
+		// Return
+		return;
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {
@@ -194,6 +188,8 @@ class Minefield extends React.Component {
 		}
 		// Frame hidden array
 		this.setState({arrayHidden: arrHidden});
+		// Return
+		return arrHidden;
 	};
 	// Set method to get adjacent mines from index
 	getAdjSquares = (idxRaw) => {

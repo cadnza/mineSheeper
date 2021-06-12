@@ -1,56 +1,33 @@
 import React from "react";
 
 class GridSquare extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			clicked: false,
-			text: this.props.unclickedText
-		};
-	}
-	shouldComponentUpdate(prevState) {
-		return this.state.clicked;
-	}
 	render() {
 		const final = <div>
 			<button
 				className="mineButton"
 				id={this.props.btnId}
-				disabled={this.state.clicked}
-				onClick={() => {
-					const successfulClick = this.props.clickHandler();
-					this.setState({clicked: successfulClick});
-				}}
-				onContextMenu={(event) => {
-					event.preventDefault();
-					this.props.rightClickHandler();
-					return false;
-				}}
+				disabled={this.checkWhetherToDisable()}
+				onClick={this.props.clickHandler}
+				onContextMenu={
+					(event) => {
+						event.preventDefault();
+						this.props.rightClickHandler();
+						return false;
+					}
+				}
 			>
-				{this.state.text}
+				{this.props.textData}
 			</button>
 		</div>;
 		return final;
 	}
-	setInnerText = (x) => {
-		this.setState({text: x});
-	};
-	reveal = (text) => {
-		this.setInnerText(text);
-		this.setState({clicked: true});
-	};
-	cover = () => {
-		this.setOriginalText();
-		this.setState({clicked: false});
-	};
-	flag = () => {
-		this.setInnerText(this.props.kFlag);
-	};
-	question = () => {
-		this.setInnerText(this.props.kQuestion);
-	};
-	setOriginalText = () => {
-		this.setInnerText(this.props.unclickedText);
+	checkWhetherToDisable = () => {
+		const txt = this.props.textData;
+		const isFlagged = txt === this.props.kFlag;
+		const isQuestioned = txt === this.props.kQuestion;
+		const isUntouched = typeof txt === "undefined";
+		const shouldDisable = !isFlagged && !isQuestioned && !isUntouched;
+		return shouldDisable;
 	};
 }
 
