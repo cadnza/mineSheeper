@@ -54,7 +54,6 @@ class Controller extends React.Component {
 				{statusDiv}
 			</div>
 			<Minefield
-				ref="mineField"
 				size={this.state.size}
 				nMines={this.state.nMines}
 				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
