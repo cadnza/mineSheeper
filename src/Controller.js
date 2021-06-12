@@ -29,7 +29,7 @@ class Controller extends React.Component {
 				>
 					<button
 						onClick={
-							() => {this.setState({size: x[1],nMines: x[2]});}
+							() => {this.changeDifficulty(x);}
 						}
 					>
 						{x[0]}
@@ -63,6 +63,12 @@ class Controller extends React.Component {
 		</div>;
 		return final;
 	}
+	changeDifficulty = (targetDifficulty) => {
+		this.setState({
+			size: targetDifficulty[1],
+			nMines: targetDifficulty[2]
+		});
+	};
 }
 
 export default Controller;
