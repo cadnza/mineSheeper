@@ -40,7 +40,7 @@ class Minefield extends React.Component {
 		}
 		// Reveal last clicked button with adjacent buttons if its a 0
 		const revealRecursive = (idx,exclude = []) => {
-			if(this.state.hiddenArray[idx] === 0) {
+			if(this.state.arrayHidden[idx] === 0) {
 				var adjs = this.getAdjSquares(idx);
 				exclude.push(idx);
 				adjs = adjs.filter(x => {return !exclude.includes(x);});
@@ -48,7 +48,7 @@ class Minefield extends React.Component {
 			}
 			const allButtonRefs = this.getAllButtonRefs();
 			if(idx < allButtonRefs.length) {
-				allButtonRefs[idx].reveal(this.state.hiddenArray[idx]);
+				allButtonRefs[idx].reveal(this.state.arrayHidden[idx]);
 			}
 			return null;
 		};
@@ -106,7 +106,7 @@ class Minefield extends React.Component {
 		// Reset game state parameters
 		this.setState({
 			started: false,
-			hiddenArray: [],
+			arrayHidden: [],
 			buttonLastClicked: []
 		});
 	};
@@ -193,7 +193,7 @@ class Minefield extends React.Component {
 			}
 		}
 		// Frame hidden array
-		this.setState({hiddenArray: arrHidden});
+		this.setState({arrayHidden: arrHidden});
 	};
 	// Set method to get adjacent mines from index
 	getAdjSquares = (idxRaw) => {
