@@ -13,7 +13,7 @@ class Controller extends React.Component {
 				["C",[20,20],60],
 				["D",[20,30],90]
 			],
-			buttonWidth: 0.21,
+			buttonWidth: 0.35,
 			buttonUnit: "in",
 			wideButtonMultiplier: 2
 		};
