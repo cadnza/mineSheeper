@@ -23,7 +23,7 @@ class Controller extends React.Component {
 		const stdWidthAdj = (
 			this.state.buttonWidth * this.state.wideButtonMultiplier
 		) + this.state.buttonUnit;
-		var buttons = this.state.options.map(
+		const difficultyButtons = this.state.options.map(
 			x => {
 				const final = <div key={x[0]} className="dfButton"
 				>
@@ -38,19 +38,23 @@ class Controller extends React.Component {
 				return final;
 			}
 		);
-		buttons.push(
-			<div key="emoji"><button id="emoji" disabled></button></div>
-		);
-		var final = <div>
-			<div
-				id="difficulty"
-				style={{
-					display: "grid",
-					gridTemplateRows: stdWidth,
-					gridTemplateColumns: "repeat(4, " + stdWidthAdj + ") " + stdWidth
-				}}
-			>{buttons}</div>
+		const difficultyDiv = <div
+			id="difficulty"
+			style={{
+				gridTemplateRows: stdWidth,
+				gridTemplateColumns: "repeat(" + this.state.options.length + ", " + stdWidthAdj + ")"
+			}}
+		>
+			{difficultyButtons}
+		</div>;
+		const statusDiv = <div id="statusIndicator" />;
+		var final = <div id="gameContainer">
+			<div id="gameHeader">
+				{difficultyDiv}
+				{statusDiv}
+			</div>
 			<Minefield
+				ref="mineField"
 				size={this.state.size}
 				nMines={this.state.nMines}
 				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
