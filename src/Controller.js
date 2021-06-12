@@ -47,13 +47,22 @@ class Controller extends React.Component {
 		>
 			{difficultyButtons}
 		</div>;
-		var final = <div id="gameContainer">
+		var final = <div
+			id="gameContainer"
+			style={{
+				width: (this.state.size[1] * this.state.buttonWidth) + this.state.buttonUnit
+			}}
+		>
 			<Minefield
 				size={this.state.size}
 				nMines={this.state.nMines}
+				buttonWidth={this.state.buttonWidth}
+				buttonWidthUnit={this.state.buttonUnit}
 				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
+				wideButtonMultiplier={this.state.wideButtonMultiplier}
 				uniqueId={Math.random()}
 				difficultyDiv={difficultyDiv}
+				nDifficultyButtons={this.state.options.length}
 			/>
 		</div>;
 		return final;

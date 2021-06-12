@@ -1,11 +1,23 @@
+button {
+	width: 100%;
+	height: 100%;
+}
+button:disabled {
+	background-color: lightgrey;
+}
+#gameHeader {
+	display: grid;
+}
 #difficulty {
 	width: 3in;
 	display: grid;
 	grid-auto-flow: column;
 }
-button {
-	width: 100%;
-	height: 100%;
+#victoryStatus {
+	text-align: right;
+}
+#mines {
+	display: grid;
 }
 /*
 body,
@@ -16,6 +28,3 @@ button {
 	color: darkgrey;
 }
 */
-button:disabled {
-	background-color: lightgrey;
-}

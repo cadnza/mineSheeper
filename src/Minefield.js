@@ -63,15 +63,26 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
+		console.log(
+			String(
+				this.props.nDifficultyButtons * this.props.buttonWidth
+			) + this.props.buttonWidthUnit + " 1fr"
+		); //TEMP
 		var final = <div>
-			<div id="gameHeader">
+			<div
+				id="gameHeader"
+				style={{
+					gridTemplateColumns: String(
+						this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
+					) + this.props.buttonWidthUnit + " 1fr"
+				}}
+			>
 				{this.props.difficultyDiv}
 				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 			</div>
 			<div
 				id="mines"
 				style={{
-					display: "grid",
 					gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
 					gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
 				}}
@@ -279,7 +290,7 @@ class Minefield extends React.Component {
 				final = "B-)"; //TEMP
 				break;
 			default:
-				final = ":-)"; //TEMP
+				final = "🧑‍🌾"; //TEMP
 				break;
 		}
 		return final;
