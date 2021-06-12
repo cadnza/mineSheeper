@@ -47,17 +47,13 @@ class Controller extends React.Component {
 		>
 			{difficultyButtons}
 		</div>;
-		const statusDiv = <div id="statusIndicator" />;
 		var final = <div id="gameContainer">
-			<div id="gameHeader">
-				{difficultyDiv}
-				{statusDiv}
-			</div>
 			<Minefield
 				size={this.state.size}
 				nMines={this.state.nMines}
 				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
 				uniqueId={Math.random()}
+				difficultyDiv={difficultyDiv}
 			/>
 		</div>;
 		return final;

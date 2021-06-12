@@ -63,15 +63,20 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
-		var final = <div
-			id="mines"
-			style={{
-				display: "grid",
-				gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
-				gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
-			}}
-		>
-			{mineButtons}
+		var final = <div>
+			<div id="gameHeader">
+				{this.props.difficultyDiv}
+			</div>
+			<div
+				id="mines"
+				style={{
+					display: "grid",
+					gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
+					gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
+				}}
+			>
+				{mineButtons}
+			</div>
 		</div>;
 		// Return
 		return final;
