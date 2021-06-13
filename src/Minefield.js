@@ -177,6 +177,10 @@ class Minefield extends React.Component {
 		return;
 	};
 	processSquareRightClick = (idx) => {
+		// Do nothing if game hasn't started
+		if(!this.state.started) {
+			return;
+		}
 		// Do nothing if game has already been lost or won
 		if(this.state.victoryStatus === 1) {
 			return;
