@@ -36,7 +36,7 @@ class GridSquare extends React.Component {
 				final = "💥"; //TEMP
 				break;
 			case this.props.kFlag:
-				final = "🌵"; //TEMP
+				final = this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀","🍄"]); //TEMP
 				break;
 			case this.props.kQuestion:
 				final = "🐶"; //TEMP
