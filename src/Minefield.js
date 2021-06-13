@@ -232,16 +232,15 @@ class Minefield extends React.Component {
 		const gridLen = this.props.size[0] * this.props.size[1];
 		// Get options for mine placement
 		var minePlacementOpts = Array.from(Array(gridLen).keys()).filter(x => {return x !== idxFirstClicked;});
-		// Sample placement options
-		var placements = [];
-		for(var i = 0; i < this.props.nMines; i++) {
-			const nextMine = minePlacementOpts[
-				Math.floor(Math.random() * minePlacementOpts.length)
-			];
-			minePlacementOpts = minePlacementOpts.filter(x => {return x !== nextMine;});
-			placements.push(nextMine);
+		// Shuffle placement options with the Fisher-Yates Algorithm
+		for(var i = minePlacementOpts.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * i);
+			const temp = minePlacementOpts[i];
+			minePlacementOpts[i] = minePlacementOpts[j];
+			minePlacementOpts[j] = temp;
 		}
-		placements = placements.sort((a,b) => {return a - b;});
+		// Take first nMines shuffled placements
+		var placements = minePlacementOpts.slice(0,this.props.nMines);
 		// Open array representing hidden grid
 		var arrHidden = Array(gridLen);
 		// Add mines to hidden array
