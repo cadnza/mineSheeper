@@ -54,6 +54,7 @@ class Minefield extends React.Component {
 				<GridSquare
 					key={i}
 					btnId={btnId}
+					kMine={this.state.kMine}
 					kFlag={this.state.kFlag}
 					kQuestion={this.state.kQuestion}
 					clickHandler={() => this.processSquareClick(buttonIdx)}
@@ -63,11 +64,6 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
-		console.log(
-			String(
-				this.props.nDifficultyButtons * this.props.buttonWidth
-			) + this.props.buttonWidthUnit + " 1fr"
-		); //TEMP
 		var final = <div>
 			<div
 				id="gameHeader"
@@ -115,7 +111,10 @@ class Minefield extends React.Component {
 	};
 	processSquareClick = (idx) => {
 		// Do nothing if game has already been lost or won
-		if(this.state.victoryStatus !== 0) {
+		if(this.state.victoryStatus === 1) {
+			return;
+		}
+		if(this.state.victoryStatus === 2) {
 			return;
 		}
 		// Get method for recursive reveal if revealed value is 0
@@ -165,7 +164,11 @@ class Minefield extends React.Component {
 		}
 		// Perform normal click otherwise
 		else {
+			// Get new visible array
 			const arrVisible = revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
+			// Check for victory
+			this.checkForVictory(arrVisible);
+			// Update visible array
 			this.setState({
 				arrayVisible: arrVisible,
 			});
@@ -174,8 +177,15 @@ class Minefield extends React.Component {
 		return;
 	};
 	processSquareRightClick = (idx) => {
+		// Do nothing if game has already been lost or won
+		if(this.state.victoryStatus === 1) {
+			return;
+		}
+		if(this.state.victoryStatus === 2) {
+			return;
+		}
 		// Copy visible array to new array
-		var newList = this.state.arrayVisible;
+		var arrVisible = this.state.arrayVisible;
 		// Get new value for temporary storage
 		var newVal;
 		// Flag if empty
@@ -190,10 +200,30 @@ class Minefield extends React.Component {
 		else if(this.state.arrayVisible[idx] === this.state.kQuestion) {
 			newVal = undefined;
 		}
+		// Get new visible array
+		arrVisible[idx] = newVal;
+		// Check for victory
+		this.checkForVictory(arrVisible);
 		// Update visible array
-		newList[idx] = newVal;
-		this.setState({arrayVisible: newList});
+		this.setState({arrayVisible: arrVisible});
 		// Return
+		return;
+	};
+	// Set method to check for victory
+	checkForVictory = (arrVisible) => {
+		const showingMines = arrVisible.findIndex(x => {
+			return x === this.state.kMine;
+		}) !== -1;
+		const onlyMinesUnclicked = arrVisible.filter(x => {
+			return typeof x === "undefined";
+		}).length === this.props.nMines;
+		const allFlagged = arrVisible.filter(x => {
+			return x === this.state.kFlag;
+		}).length === this.props.nMines;
+		const isVictory = !showingMines && !onlyMinesUnclicked && allFlagged;
+		if(isVictory) {
+			this.setState({victoryStatus: 1});
+		}
 		return;
 	};
 	// Set method to build grid
@@ -284,10 +314,10 @@ class Minefield extends React.Component {
 		var final;
 		switch(this.state.victoryStatus) {
 			case 1:
-				final = ":-/"; //TEMP
+				final = "!!!"; //TEMP
 				break;
 			case 2:
-				final = "B-)"; //TEMP
+				final = ":/"; //TEMP
 				break;
 			default:
 				final = "🧑‍🌾"; //TEMP
