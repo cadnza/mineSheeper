@@ -1,4 +1,5 @@
 import React from "react";
+import memoize from "memoize-one";
 
 class GridSquare extends React.Component {
 	render() {
@@ -29,24 +30,26 @@ class GridSquare extends React.Component {
 		const shouldDisable = !isFlagged && !isQuestioned && !isUntouched;
 		return shouldDisable;
 	};
-	parseSquareValue = (x) => {
-		var final;
-		switch(x) {
-			case this.props.kMine:
-				final = "💥"; //TEMP
-				break;
-			case this.props.kFlag:
-				final = this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀","🍄"]); //TEMP
-				break;
-			case this.props.kQuestion:
-				final = "🐶"; //TEMP
-				break;
-			default:
-				final = x; //TEMP
-				break;
+	parseSquareValue = memoize(
+		(x) => {
+			var final;
+			switch(x) {
+				case this.props.kMine:
+					final = "💥"; //TEMP
+					break;
+				case this.props.kFlag:
+					final = this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀","🍄"]); //TEMP
+					break;
+				case this.props.kQuestion:
+					final = "🐶"; //TEMP
+					break;
+				default:
+					final = x; //TEMP
+					break;
+			}
+			return final;
 		}
-		return final;
-	};
+	);
 	sampleFromArray = (arr) => {
 		const final = arr[Math.floor(Math.random() * arr.length)];
 		return final;
