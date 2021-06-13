@@ -29,7 +29,7 @@ class GridSquare extends React.Component {
 		const shouldDisable = !isFlagged && !isQuestioned && !isUntouched;
 		return shouldDisable;
 	};
-	parseSquareValue(x) {
+	parseSquareValue = (x) => {
 		var final;
 		switch(x) {
 			case this.props.kMine:
@@ -46,7 +46,7 @@ class GridSquare extends React.Component {
 				break;
 		}
 		return final;
-	}
+	};
 }
 
 export default GridSquare;

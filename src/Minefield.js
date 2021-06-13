@@ -309,7 +309,7 @@ class Minefield extends React.Component {
 		// Return
 		return final;
 	};
-	parseVictoryStatus() {
+	parseVictoryStatus = () => {
 		var final;
 		switch(this.state.victoryStatus) {
 			case 1:
@@ -323,7 +323,7 @@ class Minefield extends React.Component {
 				break;
 		}
 		return final;
-	}
+	};
 }
 
 export default Minefield;
