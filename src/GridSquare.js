@@ -47,6 +47,10 @@ class GridSquare extends React.Component {
 		}
 		return final;
 	};
+	sampleFromArray = (arr) => {
+		const final = arr[Math.floor(Math.random() * arr.length)];
+		return final;
+	};
 }
 
 export default GridSquare;
