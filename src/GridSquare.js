@@ -32,13 +32,13 @@ class GridSquare extends React.Component {
 	parseSquareValue(x) {
 		var final;
 		switch(x) {
-			case 9:
+			case this.props.kMine:
 				final = "💥"; //TEMP
 				break;
-			case 10:
+			case this.props.kFlag:
 				final = "🌵"; //TEMP
 				break;
-			case 11:
+			case this.props.kQuestion:
 				final = "🐶"; //TEMP
 				break;
 			default:
