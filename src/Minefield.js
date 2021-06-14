@@ -215,16 +215,16 @@ class Minefield extends React.Component {
 	};
 	// Set method to check for victory
 	checkForVictory = (arrVisible) => {
-		const showingMines = arrVisible.findIndex(x => {
-			return x === this.state.kMine;
-		}) !== -1;
-		const onlyMinesUnclicked = arrVisible.filter(x => {
-			return typeof x === "undefined";
-		}).length === this.props.nMines;
-		const allFlagged = arrVisible.filter(x => {
-			return x === this.state.kFlag;
-		}).length === this.props.nMines;
-		const isVictory = !showingMines && !onlyMinesUnclicked && allFlagged;
+		if(!this.state.started) {
+			return;
+		}
+		var isVictory = true;
+		for(var i = 0; i < arrVisible.length; i++) {
+			if(this.state.arrayHidden[i] === this.state.kMine && arrVisible[i] !== this.state.kFlag) {
+				isVictory = false;
+				break;
+			}
+		}
 		if(isVictory) {
 			this.setState({victoryStatus: 1});
 		}
