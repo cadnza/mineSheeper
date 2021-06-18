@@ -167,11 +167,13 @@ class Minefield extends React.Component {
 			// Get new visible array
 			const arrVisible = revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
 			// Check for victory
-			this.checkForVictory(arrVisible);
-			// Update visible array
-			this.setState({
-				arrayVisible: arrVisible,
-			});
+			let isVictory = this.checkForVictory(arrVisible);
+			// Update visible array if not yet victory
+			if(!isVictory) {
+				this.setState({
+					arrayVisible: arrVisible,
+				});
+			}
 		}
 		// Return
 		return;
@@ -207,28 +209,47 @@ class Minefield extends React.Component {
 		// Get new visible array
 		arrVisible[idx] = newVal;
 		// Check for victory
-		this.checkForVictory(arrVisible);
-		// Update visible array
-		this.setState({arrayVisible: arrVisible});
+		let isVictory = this.checkForVictory(arrVisible);
+		// Update visible array if not yet victory
+		if(!isVictory) {
+			this.setState({arrayVisible: arrVisible});
+		}
 		// Return
 		return;
 	};
 	// Set method to check for victory
 	checkForVictory = (arrVisible) => {
+		// Do nothing if game isn't started
 		if(!this.state.started) {
 			return;
 		}
+		// Set default victory status to true
 		var isVictory = true;
+		// Set victory status to false if any mines are unflagged
 		for(var i = 0; i < arrVisible.length; i++) {
 			if(this.state.arrayHidden[i] === this.state.kMine && arrVisible[i] !== this.state.kFlag) {
 				isVictory = false;
 				break;
 			}
 		}
+		// Uncover non-mine squares and update victory status if victory
 		if(isVictory) {
-			this.setState({victoryStatus: 1});
+			const arrVis = Array.from(Array(this.state.arrayHidden.length).keys()).map(
+				(i) => {
+					if(this.state.arrayHidden[i] !== this.state.kMine) {
+						return this.state.arrayHidden[i];
+					} else {
+						return arrVisible[i];
+					}
+				}
+			);
+			this.setState({
+				victoryStatus: 1,
+				arrayVisible: arrVis
+			});
 		}
-		return;
+		// Return victory status
+		return isVictory;
 	};
 	// Set method to build grid
 	getHiddenGrid = (idxFirstClicked) => {
