@@ -1,5 +1,5 @@
 import React from "react";
-import GridSquare from "./GridSquare.js";
+import GridSquare from "./GridSquare";
 
 class Minefield extends React.Component {
 	constructor(props) {
