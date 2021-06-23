@@ -1,3 +1,6 @@
+* {
+	vertical-align: middle;
+}
 button {
 	width: 100%;
 	height: 100%;
@@ -13,8 +16,9 @@ button:disabled {
 	display: grid;
 	grid-auto-flow: column;
 }
+#remainingFlags,
 #victoryStatus {
-	text-align: right;
+	text-align: center;
 }
 #mines {
 	display: grid;
