@@ -8,14 +8,14 @@ class Controller extends React.Component {
 			size: [10,10],
 			nMines: 15,
 			options: [
-				["A",[10,10],15],
-				["B",[15,15],33],
-				["C",[20,20],60],
-				["D",[20,30],90]
+				["1️⃣",[10,10],15],
+				["2️⃣",[15,15],33],
+				["3️⃣",[20,20],60],
+				["4️⃣",[20,30],90]
 			],
 			buttonWidth: 0.35,
 			buttonUnit: "in",
-			wideButtonMultiplier: 2
+			wideButtonMultiplier: 1.5
 		};
 	}
 	render() {
