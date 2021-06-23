@@ -13,7 +13,8 @@ class Minefield extends React.Component {
 			kFlag: 10,
 			kQuestion: 11,
 			btnClassIdPrefix: "btn",
-			resetIsQueued: false
+			resetIsQueued: false,
+			gFlag: "🌱"
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
@@ -74,7 +75,7 @@ class Minefield extends React.Component {
 				}}
 			>
 				{this.props.difficultyDiv}
-				<div id="remainingFlags">{this.countRemainingFlags()}</div>
+				<div id="remainingFlags">{this.state.gFlag} {this.countRemainingFlags()}</div>
 				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 			</div>
 			<div
