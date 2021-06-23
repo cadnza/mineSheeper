@@ -74,6 +74,7 @@ class Minefield extends React.Component {
 				}}
 			>
 				{this.props.difficultyDiv}
+				<div id="">{this.countRemainingFlags()}</div>
 				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 			</div>
 			<div
@@ -188,6 +189,10 @@ class Minefield extends React.Component {
 			return;
 		}
 		if(this.state.victoryStatus === 2) {
+			return;
+		}
+		// Do nothing if out of flags
+		if(!this.countRemainingFlags()) {
 			return;
 		}
 		// Copy visible array to new array
@@ -338,15 +343,20 @@ class Minefield extends React.Component {
 		var final;
 		switch(this.state.victoryStatus) {
 			case 1:
-				final = "!!!"; //TEMP
+				final = "😀"; //TEMP
 				break;
 			case 2:
-				final = ":/"; //TEMP
+				final = "😕"; //TEMP
 				break;
 			default:
-				final = "🧑‍🌾"; //TEMP
+				final = "🙂"; //TEMP
 				break;
 		}
+		return final;
+	};
+	countRemainingFlags = () => {
+		let flagsPlaced = this.state.arrayVisible.filter((x) => {return x === this.state.kFlag;}).length;
+		let final = this.props.nMines - flagsPlaced;
 		return final;
 	};
 }
