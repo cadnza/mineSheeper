@@ -48,11 +48,11 @@ class GridSquare extends React.Component {
 					final = <div>🐶</div>;
 					break;
 				case 0:
-					final = <div>{this.getSheep()}</div>;
+					final = <div className={this.randomMirror()}>{this.getSheep()}</div>;
 					break;
 				default:
 					final = <div>
-						<div className="back">{this.getSheep()}</div>
+						<div className={"back" + this.randomMirror()}>{this.getSheep()}</div>
 						<div className="front">{x}</div>
 					</div>;
 					break;
@@ -71,6 +71,10 @@ class GridSquare extends React.Component {
 				"🐏"
 			].flat()
 		);
+		return final;
+	};
+	randomMirror = () => {
+		let final = this.sampleFromArray([" mirrored",""]);
 		return final;
 	};
 	getTextColor = (x) => {
