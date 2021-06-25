@@ -16,7 +16,7 @@ body {
 }
 * {
 	vertical-align: middle;
-	/*font-family: fontBody;*/
+	font-family: arial;
 }
 button {
 	width: 100%;
