@@ -16,7 +16,7 @@ class GridSquare extends React.Component {
 						return false;
 					}
 				}
-				style={{color: "red"}} //TEMP
+				style={{color: this.getTextColor(this.props.textData)}} //TEMP
 			>
 				{this.parseSquareValue(this.props.textData)}
 			</button>
@@ -62,6 +62,28 @@ class GridSquare extends React.Component {
 	sampleFromArray = (arr) => {
 		const final = arr[Math.floor(Math.random() * arr.length)];
 		return final;
+	};
+	getTextColor = (x) => {
+		switch(x) {
+			case 1:
+				return "blue";
+			case 2:
+				return "green";
+			case 3:
+				return "red";
+			case 4:
+				return "darkblue";
+			case 5:
+				return "darkred";
+			case 6:
+				return "darkturquoise";
+			case 7:
+				return "black";
+			case 8:
+				return "darkgrey";
+			default:
+				return "inherit";
+		}
 	};
 }
 
