@@ -1,18 +1,18 @@
 @font-face {
 	/* Use for title //TEMP */
-	font-family: farmhouseRecipe;
+	font-family: fontTitle;
 	src: url(fonts/FARMHOUSE_RECIPE.otf);
 }
 @font-face {
-	font-family: potatoFarmer;
+	font-family: fontBody;
 	src: url(fonts/Potato_Farmer.ttf);
 }
 #displayTitle {
-	font-family: farmhouseRecipe;
+	font-family: fontTitle;
 }
 * {
 	vertical-align: middle;
-	font-family: potatoFarmer;
+	font-family: fontBody;
 }
 button {
 	width: 100%;
