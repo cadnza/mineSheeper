@@ -33,6 +33,9 @@ class GridSquare extends React.Component {
 	};
 	parseSquareValue = memoize(
 		(x) => {
+			if(typeof x === "undefined") {
+				return "";
+			}
 			var final;
 			switch(x) {
 				case this.props.kMine:
