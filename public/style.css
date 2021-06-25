@@ -36,6 +36,7 @@ button {
 	border-style: solid;
 	border-width: 2px;
 	transition-duration: 0.125s;
+	position: relative;
 }
 button:active {
 	border-width: 6px;
@@ -46,6 +47,18 @@ button:hover {
 button:disabled {
 	background-color: darkgreen;
 }
+button > div,
+.front,
+.back {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+.back {
+	opacity: 75%;
+}
 #gameHeader {
 	display: grid;
 }
@@ -54,7 +67,9 @@ button:disabled {
 	display: grid;
 	grid-auto-flow: column;
 }
-#remainingFlags,
+#remainingFlags {
+	text-align: right;
+}
 #victoryStatus {
 	text-align: center;
 }

@@ -51,7 +51,10 @@ class GridSquare extends React.Component {
 					final = <div>{this.getSheep()}</div>;
 					break;
 				default:
-					final = <div>{x}</div>;
+					final = <div>
+						<div className="back">{this.getSheep()}</div>
+						<div className="front">{x}</div>
+					</div>;
 					break;
 			}
 			return final;
