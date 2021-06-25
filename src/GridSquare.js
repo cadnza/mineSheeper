@@ -36,24 +36,19 @@ class GridSquare extends React.Component {
 			var final;
 			switch(x) {
 				case this.props.kMine:
-					final = "💥";
+					final = <div>💥</div>;
 					break;
 				case this.props.kFlag:
-					final = this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀"]);
+					final = <div>{this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀"])}</div>;
 					break;
 				case this.props.kQuestion:
-					final = "🐶";
+					final = <div>🐶</div>;
 					break;
 				case 0:
-					final = this.sampleFromArray(
-						[
-							Array(3).fill("🐑"),
-							"🐏"
-						].flat()
-					);
+					final = <div>{this.getSheep()}</div>;
 					break;
 				default:
-					final = x;
+					final = <div>{x}</div>;
 					break;
 			}
 			return final;
@@ -61,6 +56,15 @@ class GridSquare extends React.Component {
 	);
 	sampleFromArray = (arr) => {
 		const final = arr[Math.floor(Math.random() * arr.length)];
+		return final;
+	};
+	getSheep = () => {
+		let final = this.sampleFromArray(
+			[
+				Array(3).fill("🐑"),
+				"🐏"
+			].flat()
+		);
 		return final;
 	};
 	getTextColor = (x) => {
