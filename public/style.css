@@ -32,7 +32,7 @@ button:active {
 	border-width: 6px;
 }
 button:hover {
-	/*Use this*/
+	background-color: rgb(41, 146, 41);
 }
 button:disabled {
 	background-color: lightgrey;
