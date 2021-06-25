@@ -28,6 +28,7 @@ class Controller extends React.Component {
 				const final = <div key={x[0]} className="dfButton"
 				>
 					<button
+						className="difficultyButton"
 						onClick={
 							() => {this.changeDifficulty(x);}
 						}

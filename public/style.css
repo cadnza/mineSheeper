@@ -9,6 +9,13 @@
 body {
 	background-color: darkgreen;
 }
+.mineButton,
+#victoryStatus,
+#remainingFlagsSymbol,
+.difficultyButton {
+	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
+		-1px -1px 0px black;
+}
 #displayTitle {
 	/*font-family: fontTitle;*/
 	font-size: 24pt;
@@ -22,6 +29,7 @@ button {
 	width: 100%;
 	height: 100%;
 	font-weight: bold; /*TEMP*/
+	font-size: 12pt;
 	border-radius: 10px;
 	background-color: green;
 	border-color: darkgreen;
