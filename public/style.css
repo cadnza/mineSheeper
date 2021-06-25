@@ -7,6 +7,9 @@
 	font-family: potatoFarmer;
 	src: url(fonts/Potato_Farmer.ttf);
 }
+#displayTitle {
+	font-family: farmhouseRecipe;
+}
 * {
 	vertical-align: middle;
 	font-family: potatoFarmer;
