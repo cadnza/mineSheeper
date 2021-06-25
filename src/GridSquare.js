@@ -16,7 +16,7 @@ class GridSquare extends React.Component {
 						return false;
 					}
 				}
-				style={{color: this.getTextColor(this.props.textData)}} //TEMP
+				style={{color: this.getTextColor(this.props.textData)}}
 			>
 				{this.parseSquareValue(this.props.textData)}
 			</button>
