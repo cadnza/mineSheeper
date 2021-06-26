@@ -71,7 +71,8 @@ class Minefield extends React.Component {
 				style={{
 					gridTemplateColumns: String(
 						this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
-					) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull
+					) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull,
+					width: this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit
 				}}
 			>
 				{this.props.difficultyDiv}

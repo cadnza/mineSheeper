@@ -63,6 +63,7 @@ class Controller extends React.Component {
 				wideButtonMultiplier={this.state.wideButtonMultiplier}
 				uniqueId={Math.random()}
 				difficultyDiv={difficultyDiv}
+				difficultyOptions={this.state.options}
 				nDifficultyButtons={this.state.options.length}
 			/>
 		</div>;

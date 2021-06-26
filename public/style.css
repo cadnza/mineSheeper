@@ -63,7 +63,7 @@ button > div,
 	display: grid;
 }
 #difficulty {
-	width: 3in;
+	width: 100%;
 	display: grid;
 	grid-auto-flow: column;
 }
