@@ -66,7 +66,8 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
-		var final = <div>
+		var final = <div id="masterContainer">
+			<div id="displayTitle">Minesheeper</div>
 			<div
 				id="gameHeader"
 				style={{
