@@ -64,7 +64,8 @@ button > div,
 .back {
 	opacity: 75%;
 }
-#gameHeader {
+#gameHeader,
+#gameFooter {
 	display: grid;
 }
 #difficulty {
@@ -95,4 +96,9 @@ button > div,
 	-moz-transform: matrix(-1, 0, 0, 1, 0, 0);
 	-o-transform: matrix(-1, 0, 0, 1, 0, 0);
 	transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+#githubLogo {
+	max-width: 100%;
+	max-height: 100%;
+	filter: drop-shadow(1px 1px 2px black);
 }
