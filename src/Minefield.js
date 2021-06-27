@@ -120,7 +120,11 @@ class Minefield extends React.Component {
 					<button id="help">?</button>
 				</div>
 				<div>
-					<a href="https://github.com/cadnza/mineSheeper" target="_blank">
+					<a
+						href="https://github.com/cadnza/mineSheeper"
+						target="_blank"
+						rel="noreferrer"
+					>
 						<button>
 							<img id="githubLogo" src="images/GitHub_Logo_White.png" alt="GitHub" />
 						</button>
