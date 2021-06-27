@@ -65,7 +65,6 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
-		let initialHeadFootWidth = this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit;
 		var final = <div>
 			<div
 				id="gameHeader"
@@ -73,7 +72,7 @@ class Minefield extends React.Component {
 					gridTemplateColumns: String(
 						this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
 					) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull,
-					width: initialHeadFootWidth
+					width: this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit
 				}}
 			>
 				{this.props.difficultyDiv}
@@ -97,7 +96,7 @@ class Minefield extends React.Component {
 				id="gameFooter"
 				style={{
 					gridTemplateColumns: "1fr repeat(3, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
-					width: initialHeadFootWidth,
+					width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
 					height: this.props.buttonWidthFull
 				}}
 			>
