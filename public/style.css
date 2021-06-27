@@ -84,12 +84,3 @@ button > div,
 	-o-transform: matrix(-1, 0, 0, 1, 0, 0);
 	transform: matrix(-1, 0, 0, 1, 0, 0);
 }
-/*
-body,
-button {
-	background-color: black;
-}
-* {
-	color: darkgrey;
-}
-*/
