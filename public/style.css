@@ -68,6 +68,12 @@ button > div,
 #gameFooter {
 	display: grid;
 }
+#gameFooter > div > button {
+	font-size: 12pt;
+	color: white;
+	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
+		-1px -1px 0px black;
+}
 #difficulty {
 	width: 100%;
 	display: grid;
