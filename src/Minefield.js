@@ -15,7 +15,14 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn",
 			resetIsQueued: false,
 			gFlag: "🌱",
-			gSound: "🔈"
+			gSound: "🔈",
+			cBg: "darkgreen",
+			cFg: "green",
+			colors: {
+				0: ["darkgreen","green"],
+				1: ["white","grey"], //TEMP
+				2: ["brown","red"] //TEMP
+			}
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
