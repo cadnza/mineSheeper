@@ -15,8 +15,7 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn",
 			resetIsQueued: false,
 			gFlag: "🌱",
-			gSoundOn: "🔈",
-			gSoundOff: "🔇"
+			gSound: "🔈"
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
@@ -108,7 +107,13 @@ class Minefield extends React.Component {
 						id="sound"
 						onClick={this.props.fToggleSound}
 					>
-						{this.props.soundOn ? this.state.gSoundOn : this.state.gSoundOff}
+						<span
+							style={{
+								opacity: this.props.soundOn ? "100%" : "25%"
+							}}
+						>
+							{this.state.gSound}
+						</span>
 					</button>
 				</div>
 				<div>
