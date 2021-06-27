@@ -13,7 +13,8 @@ body {
 .mineButton,
 #victoryStatus,
 #remainingFlagsSymbol,
-.difficultyButton {
+.difficultyButton,
+#sound {
 	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
 		-1px -1px 0px black;
 }
@@ -68,7 +69,10 @@ button > div,
 #gameFooter {
 	display: grid;
 }
-#gameFooter > div > button {
+#sound {
+	font-size: 7pt;
+}
+#help {
 	font-size: 12pt;
 	color: white;
 	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,

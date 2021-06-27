@@ -13,6 +13,7 @@ class Controller extends React.Component {
 				["🥇",[20,20],60],
 				["🏆",[20,30],90]
 			],
+			soundOn: true,
 			buttonWidth: 0.35,
 			buttonUnit: "in",
 			wideButtonMultiplier: 1.5
@@ -65,6 +66,8 @@ class Controller extends React.Component {
 				difficultyDiv={difficultyDiv}
 				difficultyOptions={this.state.options}
 				nDifficultyButtons={this.state.options.length}
+				soundOn={this.state.soundOn}
+				fToggleSound={this.toggleSound}
 			/>
 		</div>;
 		return final;
@@ -73,6 +76,11 @@ class Controller extends React.Component {
 		this.setState({
 			size: targetDifficulty[1],
 			nMines: targetDifficulty[2]
+		});
+	};
+	toggleSound = () => {
+		this.setState({
+			soundOn: !this.state.soundOn
 		});
 	};
 }

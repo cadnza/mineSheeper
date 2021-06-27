@@ -14,7 +14,9 @@ class Minefield extends React.Component {
 			kQuestion: 11,
 			btnClassIdPrefix: "btn",
 			resetIsQueued: false,
-			gFlag: "🌱"
+			gFlag: "🌱",
+			gSoundOn: "🔈",
+			gSoundOff: "🔇"
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
@@ -101,9 +103,16 @@ class Minefield extends React.Component {
 				}}
 			>
 				<div></div>
-				<div><button></button></div>
 				<div>
-					<button>?</button>
+					<button
+						id="sound"
+						onClick={this.props.fToggleSound}
+					>
+						{this.props.soundOn ? this.state.gSoundOn : this.state.gSoundOff}
+					</button>
+				</div>
+				<div>
+					<button id="help">?</button>
 				</div>
 				<div>
 					<button onClick={() => {window.location.href = 'https://github.com/cadnza/mineSheeper';}}>
