@@ -195,24 +195,20 @@ class Minefield extends React.Component {
 		if(this.state.victoryStatus === 2) {
 			return;
 		}
-		// Do nothing if out of flags
-		if(!this.countRemainingFlags()) {
-			return;
-		}
 		// Copy visible array to new array
 		var arrVisible = this.state.arrayVisible;
 		// Get new value for temporary storage
 		var newVal;
 		// Flag if empty
-		if(typeof this.state.arrayVisible[idx] === "undefined") {
+		if(typeof this.state.arrayVisible[idx] === "undefined" && this.countRemainingFlags() > 0) {
 			newVal = this.state.kFlag;
 		}
 		// Change to questioned if flagged
-		else if(this.state.arrayVisible[idx] === this.state.kFlag) {
+		else if(this.state.arrayVisible[idx] === this.state.kFlag || !this.countRemainingFlags()) {
 			newVal = this.state.kQuestion;
 		}
 		// Empty if questioned
-		else if(this.state.arrayVisible[idx] === this.state.kQuestion) {
+		if(this.state.arrayVisible[idx] === this.state.kQuestion) {
 			newVal = undefined;
 		}
 		// Get new visible array
