@@ -1,10 +1,10 @@
 @font-face {
 	font-family: fontTitle;
-	src: url(fonts/FARMHOUSE_RECIPE.otf);
+	src: url(fonts/Coventrygarden-qB2r.ttf);
 }
 @font-face {
 	font-family: fontBody;
-	src: url(fonts/Potato_Farmer.ttf);
+	src: url(fonts/Coventrygarden-qB2r.ttf);
 }
 body {
 	background-color: darkgreen;
@@ -17,7 +17,7 @@ body {
 		-1px -1px 0px black;
 }
 #displayTitle {
-	/*font-family: fontTitle;*/
+	font-family: fontTitle;
 	font-size: 24pt;
 	margin: 15px;
 }
@@ -70,6 +70,7 @@ button > div,
 }
 #remainingFlags {
 	text-align: right;
+	font-family: fontBody;
 }
 #victoryStatus {
 	text-align: center;
