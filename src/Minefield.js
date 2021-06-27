@@ -180,6 +180,8 @@ class Minefield extends React.Component {
 				});
 			}
 		}
+		// Deselect all text
+		this.deselectAll();
 		// Return
 		return;
 	};
@@ -219,6 +221,8 @@ class Minefield extends React.Component {
 		if(!isVictory) {
 			this.setState({arrayVisible: arrVisible});
 		}
+		// Deselect all text
+		this.deselectAll();
 		// Return
 		return;
 	};
@@ -353,6 +357,9 @@ class Minefield extends React.Component {
 				break;
 		}
 		return final;
+	};
+	deselectAll = () => {
+		document.getSelection().removeAllRanges();
 	};
 	countRemainingFlags = () => {
 		let flagsPlaced = this.state.arrayVisible.filter((x) => {return x === this.state.kFlag;}).length;
