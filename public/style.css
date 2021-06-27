@@ -8,6 +8,7 @@
 }
 body {
 	background-color: darkgreen;
+	font-size: 12pt;
 }
 .mineButton,
 #victoryStatus,
@@ -20,6 +21,9 @@ body {
 	font-family: fontTitle;
 	font-size: 24pt;
 	margin: 15px;
+	color: white;
+	text-shadow: -1px 1px 1px black, 1px 1px 1px black, 1px -1px 1px black,
+		-1px -1px 1px black;
 }
 * {
 	vertical-align: middle;
@@ -69,8 +73,15 @@ button > div,
 	grid-auto-flow: column;
 }
 #remainingFlags {
-	text-align: right;
-	font-family: fontBody;
+	text-align: center;
+}
+#remainingFlagsCount {
+	font-size: 12pt;
+	font-weight: bold;
+	color: white;
+	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
+		-1px -1px 0px black;
+	/*letter-spacing: 1.5px;*/
 }
 #victoryStatus {
 	text-align: center;

@@ -77,7 +77,9 @@ class Minefield extends React.Component {
 			>
 				{this.props.difficultyDiv}
 				<div id="remainingFlags">
-					<span id="remainingFlagsSymbol">{this.state.gFlag}</span> {this.countRemainingFlags()}
+					<span id="remainingFlagsSymbol">{this.state.gFlag}</span>
+					&nbsp;
+					<span id="remainingFlagsCount">{this.countRemainingFlags()}</span>
 				</div>
 				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 			</div>
