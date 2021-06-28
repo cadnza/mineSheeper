@@ -42,7 +42,7 @@ class GridSquare extends React.Component {
 					final = <div>💥</div>;
 					break;
 				case this.props.kFlag:
-					final = <div>{this.sampleFromArray(["🌱","🪴","🌲","🎄","🌳","🌵","🌿","☘️","🍀"])}</div>;
+					final = <div>{this.sampleFromArray(["🌱","🌲","🎄","🌳","🌵","🌿","☘️","🍀"])}</div>;
 					break;
 				case this.props.kQuestion:
 					final = <div>🐶</div>;
