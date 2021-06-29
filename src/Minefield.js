@@ -73,73 +73,79 @@ class Minefield extends React.Component {
 			);
 		}
 		// Set mine buttons into div
-		var final = <div id="masterContainer">
-			<div id="displayTitle">Minesheeper</div>
-			<div
-				id="gameHeader"
+		var final = <div id="bgForColor">
+			<div id="widthController"
 				style={{
-					gridTemplateColumns: String(
-						this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
-					) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull,
-					width: this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit
+					width: (this.props.size[1] * this.props.buttonWidth) + this.props.buttonWidthUnit
 				}}
 			>
-				{this.props.difficultyDiv}
-				<div id="remainingFlags">
-					<span id="remainingFlagsSymbol">{this.state.gFlag}</span>
-					&nbsp;
-					<span id="remainingFlagsCount">{this.countRemainingFlags()}</span>
+				<div id="displayTitle">Minesheeper</div>
+				<div
+					id="gameHeader"
+					style={{
+						gridTemplateColumns: String(
+							this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
+						) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull,
+						width: this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit
+					}}
+				>
+					{this.props.difficultyDiv}
+					<div id="remainingFlags">
+						<span id="remainingFlagsSymbol">{this.state.gFlag}</span>
+						&nbsp;
+						<span id="remainingFlagsCount">{this.countRemainingFlags()}</span>
+					</div>
+					<div id="victoryStatus">{this.parseVictoryStatus()}</div>
 				</div>
-				<div id="victoryStatus">{this.parseVictoryStatus()}</div>
-			</div>
-			<div
-				id="mines"
-				style={{
-					gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
-					gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
-				}}
-			>
-				{mineButtons}
-			</div>
-			<div
-				id="gameFooter"
-				style={{
-					gridTemplateColumns: "1fr repeat(3, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
-					width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
-					height: this.props.buttonWidthFull
-				}}
-			>
-				<div></div>
-				<div>
-					<button
-						id="sound"
-						onClick={this.props.fToggleSound}
-					>
-						<span
-							style={{
-								opacity: this.props.soundOn ? "100%" : "25%"
-							}}
+				<div
+					id="mines"
+					style={{
+						gridTemplateRows: "repeat(" + this.props.size[0] + ", " + this.props.buttonWidthFull + ")",
+						gridTemplateColumns: "repeat(" + this.props.size[1] + ", " + this.props.buttonWidthFull + ")"
+					}}
+				>
+					{mineButtons}
+				</div>
+				<div
+					id="gameFooter"
+					style={{
+						gridTemplateColumns: "1fr repeat(3, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
+						width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
+						height: this.props.buttonWidthFull
+					}}
+				>
+					<div></div>
+					<div>
+						<button
+							id="sound"
+							onClick={this.props.fToggleSound}
 						>
-							{this.state.gSound}
-						</span>
-					</button>
-				</div>
-				<div>
-					<button id="help">?</button>
-				</div>
-				<div>
-					<a
-						href="https://github.com/cadnza/mineSheeper"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<button>
-							<img id="githubLogo" src="images/GitHub_Logo_White.png" alt="GitHub" />
+							<span
+								style={{
+									opacity: this.props.soundOn ? "100%" : "25%"
+								}}
+							>
+								{this.state.gSound}
+							</span>
 						</button>
-					</a>
+					</div>
+					<div>
+						<button id="help">?</button>
+					</div>
+					<div>
+						<a
+							href="https://github.com/cadnza/mineSheeper"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<button>
+								<img id="githubLogo" src="images/GitHub_Logo_White.png" alt="GitHub" />
+							</button>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div >;
+		</div>;
 		// Return
 		return final;
 	};

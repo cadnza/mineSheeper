@@ -51,9 +51,6 @@ class Controller extends React.Component {
 		</div>;
 		var final = <div
 			id="gameContainer"
-			style={{
-				width: (this.state.size[1] * this.state.buttonWidth) + this.state.buttonUnit
-			}}
 		>
 			<Minefield
 				size={this.state.size}
