@@ -154,6 +154,8 @@ class Minefield extends React.Component {
 		this.setState({
 			started: false,
 			victoryStatus: 0,
+			cBg: this.state.colors[0][0],
+			cFg: this.state.colors[0][1],
 			arrayHidden: [],
 			arrayVisible: []
 		});
@@ -211,6 +213,8 @@ class Minefield extends React.Component {
 			});
 			this.setState({
 				victoryStatus: 2,
+				cBg: this.state.colors[2][0],
+				cFg: this.state.colors[2][1],
 				arrayVisible: arrVisible
 			});
 			return;
@@ -309,6 +313,8 @@ class Minefield extends React.Component {
 			);
 			this.setState({
 				victoryStatus: 1,
+				cBg: this.state.colors[1][0],
+				cFg: this.state.colors[1][1],
 				arrayVisible: arrVis
 			});
 		}
