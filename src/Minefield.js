@@ -48,6 +48,8 @@ class Minefield extends React.Component {
 			this.resetGameUi();
 			this.setState({resetIsQueued: false});
 		}
+		//Update colors
+		this.setModButtonColor(this.state.cBg,this.state.cHover);
 		// Return
 		return null;
 	}
@@ -434,7 +436,7 @@ class Minefield extends React.Component {
 	setModButtonColor = (cDisabled,cHover) => {
 		let styleString = "button:disabled { background-color:" + cDisabled +
 			"; } button:hover { background-color: " + cHover + " }";
-		this.document.getElementById("modButtonStyleHolder").innerText = styleString;
+		document.getElementById("modButtonStyleHolder").innerText = styleString;
 	};
 }
 
