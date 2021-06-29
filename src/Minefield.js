@@ -72,11 +72,18 @@ class Minefield extends React.Component {
 					clickHandler={() => this.processSquareClick(buttonIdx)}
 					rightClickHandler={() => this.processSquareRightClick(buttonIdx)}
 					textData={this.state.arrayVisible[buttonIdx]}
+					backgroundColor={this.state.cFg}
+					borderColor={this.state.cBg}
 				/>
 			);
 		}
 		// Set mine buttons into div
-		var final = <div id="bgForColor">
+		var final = <div
+			id="bgForColor"
+			style={{
+				backgroundColor: this.state.cBg
+			}}
+		>
 			<div id="widthController"
 				style={{
 					width: (this.props.size[1] * this.props.buttonWidth) + this.props.buttonWidthUnit
@@ -122,6 +129,10 @@ class Minefield extends React.Component {
 						<button
 							id="sound"
 							onClick={this.props.fToggleSound}
+							style={{
+								backgroundColor: this.state.cFg,
+								borderColor: this.state.cBg
+							}}
 						>
 							<span
 								style={{
@@ -133,7 +144,15 @@ class Minefield extends React.Component {
 						</button>
 					</div>
 					<div>
-						<button id="help">?</button>
+						<button
+							id="help"
+							style={{
+								backgroundColor: this.state.cFg,
+								borderColor: this.state.cBg
+							}}
+						>
+							?
+						</button>
 					</div>
 					<div>
 						<a
@@ -141,7 +160,12 @@ class Minefield extends React.Component {
 							target="_blank"
 							rel="noreferrer"
 						>
-							<button>
+							<button
+								style={{
+									backgroundColor: this.state.cFg,
+									borderColor: this.state.cBg
+								}}
+							>
 								<img id="githubLogo" src="images/GitHub_Logo_White.png" alt="GitHub" />
 							</button>
 						</a>
