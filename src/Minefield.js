@@ -18,10 +18,11 @@ class Minefield extends React.Component {
 			gSound: "🔈",
 			cBg: "darkgreen",
 			cFg: "green",
+			cHover: "rgb(41,146,41)",
 			colors: {
-				0: ["darkgreen","green"],
-				1: ["white","grey"], //TEMP
-				2: ["brown","red"] //TEMP
+				0: ["darkgreen","green","rgb(41, 146, 41)"],
+				1: ["white","grey","green"], //TEMP
+				2: ["brown","red","blue"] //TEMP
 			}
 		};
 	}
@@ -156,6 +157,7 @@ class Minefield extends React.Component {
 			victoryStatus: 0,
 			cBg: this.state.colors[0][0],
 			cFg: this.state.colors[0][1],
+			cHover: this.state.colors[0][2],
 			arrayHidden: [],
 			arrayVisible: []
 		});
@@ -215,6 +217,7 @@ class Minefield extends React.Component {
 				victoryStatus: 2,
 				cBg: this.state.colors[2][0],
 				cFg: this.state.colors[2][1],
+				cHover: this.state.colors[2][2],
 				arrayVisible: arrVisible
 			});
 			return;
@@ -315,6 +318,7 @@ class Minefield extends React.Component {
 				victoryStatus: 1,
 				cBg: this.state.colors[1][0],
 				cFg: this.state.colors[1][1],
+				cHover: this.state.colors[1][2],
 				arrayVisible: arrVis
 			});
 		}
@@ -426,6 +430,11 @@ class Minefield extends React.Component {
 		let flagsPlaced = this.state.arrayVisible.filter((x) => {return x === this.state.kFlag;}).length;
 		let final = this.props.nMines - flagsPlaced;
 		return final;
+	};
+	setModButtonColor = (cDisabled,cHover) => {
+		let styleString = "button:disabled { background-color:" + cDisabled +
+			"; } button:hover { background-color: " + cHover + " }";
+		this.document.getElementById("modButtonStyleHolder").innerText = styleString;
 	};
 }
 
