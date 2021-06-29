@@ -458,9 +458,11 @@ class Minefield extends React.Component {
 		return final;
 	};
 	setModButtonColor = (cDisabled,cHover) => {
-		let styleString = "button:disabled { background-color:" + cDisabled +
-			"; } button:hover { background-color: " + cHover + " }";
-		document.getElementById("modButtonStyleHolder").innerText = styleString;
+		let disabled = "button:disabled { background-color: " + cDisabled +
+			" !important; }";
+		let hover = "button:hover { background-color: " + cHover + " !important}";
+		let styleString = [disabled,hover].join(" ");
+		document.getElementsByTagName("style")[0].innerText = styleString;
 	};
 }
 
