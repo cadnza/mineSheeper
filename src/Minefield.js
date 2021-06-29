@@ -18,7 +18,7 @@ class Minefield extends React.Component {
 			gSound: "🔈",
 			cBg: "darkgreen",
 			cFg: "green",
-			cHover: "rgb(41,146,41)",
+			cHover: "rgb(41,146,41)", // For whatever reason, we're not getting a hover effect. See if you can fix it. //TEMP
 			colors: {
 				0: ["darkgreen","green","rgb(41, 146, 41)"],
 				1: ["white","grey","green"], //TEMP
