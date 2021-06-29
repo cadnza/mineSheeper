@@ -61,12 +61,6 @@ button:active {
 	border-width: 6px;
 	font-size: 10px;
 }
-button:hover {
-	background-color: rgb(41, 146, 41);
-}
-button:disabled {
-	background-color: darkgreen;
-}
 button > div,
 .front,
 .back,
