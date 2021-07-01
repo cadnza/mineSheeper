@@ -16,13 +16,13 @@ class Minefield extends React.Component {
 			resetIsQueued: false,
 			gFlag: "🌱",
 			gSound: "🔈",
-			cBg: "darkgreen",
 			cFg: "green",
+			cBg: "darkgreen",
 			cHover: "rgb(41,146,41)",
 			colors: {
 				0: ["darkgreen","green","rgb(41, 146, 41)"],
-				1: ["white","grey","green"], //TEMP
-				2: ["brown","red","blue"] //TEMP
+				1: ["orange","darkorange","chocolate"],
+				2: ["darkblue","mediumblue","blue"]
 			}
 		};
 	}
