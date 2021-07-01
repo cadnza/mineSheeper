@@ -49,7 +49,7 @@ class Minefield extends React.Component {
 			this.setState({resetIsQueued: false});
 		}
 		//Update colors
-		this.setModButtonColor(this.state.cBg,this.state.cHover);
+		this.setModButtonColor();
 		// Return
 		return null;
 	}
@@ -457,10 +457,10 @@ class Minefield extends React.Component {
 		let final = this.props.nMines - flagsPlaced;
 		return final;
 	};
-	setModButtonColor = (cDisabled,cHover) => {
-		let disabled = "button:disabled { background-color: " + cDisabled +
+	setModButtonColor = () => {
+		let disabled = "button:disabled { background-color: " + this.state.cBg +
 			" !important; }";
-		let hover = "button:hover { background-color: " + cHover + " !important}";
+		let hover = "button:hover { background-color: " + this.state.cHover + " !important}";
 		let styleString = [disabled,hover].join(" ");
 		document.getElementsByTagName("style")[0].innerText = styleString;
 	};
