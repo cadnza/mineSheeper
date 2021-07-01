@@ -438,13 +438,13 @@ class Minefield extends React.Component {
 		var final;
 		switch(this.state.victoryStatus) {
 			case 1:
-				final = "😀"; //TEMP
+				final = "🌞";
 				break;
 			case 2:
-				final = "😕"; //TEMP
+				final = "🌚";
 				break;
 			default:
-				final = "🙂"; //TEMP
+				final = "🙂";
 				break;
 		}
 		return final;
