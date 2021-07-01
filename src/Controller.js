@@ -20,6 +20,27 @@ class Controller extends React.Component {
 		};
 	}
 	render() {
+		var final = <div
+			id="gameContainer"
+		>
+			<Minefield
+				size={this.state.size}
+				nMines={this.state.nMines}
+				buttonWidth={this.state.buttonWidth}
+				buttonWidthUnit={this.state.buttonUnit}
+				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
+				wideButtonMultiplier={this.state.wideButtonMultiplier}
+				uniqueId={Math.random()}
+				difficultyDivBuilder={this.buildDifficultyDiv}
+				difficultyOptions={this.state.options}
+				nDifficultyButtons={this.state.options.length}
+				soundOn={this.state.soundOn}
+				fToggleSound={this.toggleSound}
+			/>
+		</div>;
+		return final;
+	}
+	buildDifficultyDiv = (bg,fg) => {
 		const stdWidth = this.state.buttonWidth + this.state.buttonUnit;
 		const stdWidthAdj = (
 			this.state.buttonWidth * this.state.wideButtonMultiplier
@@ -33,6 +54,10 @@ class Controller extends React.Component {
 						onClick={
 							() => {this.changeDifficulty(x);}
 						}
+						style={{
+							backgroundColor: fg,
+							borderColor: bg
+						}}
 					>
 						{x[0]}
 					</button>
@@ -40,7 +65,7 @@ class Controller extends React.Component {
 				return final;
 			}
 		);
-		const difficultyDiv = <div
+		const final = <div
 			id="difficulty"
 			style={{
 				gridTemplateRows: stdWidth,
@@ -49,26 +74,8 @@ class Controller extends React.Component {
 		>
 			{difficultyButtons}
 		</div>;
-		var final = <div
-			id="gameContainer"
-		>
-			<Minefield
-				size={this.state.size}
-				nMines={this.state.nMines}
-				buttonWidth={this.state.buttonWidth}
-				buttonWidthUnit={this.state.buttonUnit}
-				buttonWidthFull={this.state.buttonWidth + this.state.buttonUnit}
-				wideButtonMultiplier={this.state.wideButtonMultiplier}
-				uniqueId={Math.random()}
-				difficultyDiv={difficultyDiv}
-				difficultyOptions={this.state.options}
-				nDifficultyButtons={this.state.options.length}
-				soundOn={this.state.soundOn}
-				fToggleSound={this.toggleSound}
-			/>
-		</div>;
 		return final;
-	}
+	};
 	changeDifficulty = (targetDifficulty) => {
 		this.setState({
 			size: targetDifficulty[1],

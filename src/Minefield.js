@@ -99,7 +99,7 @@ class Minefield extends React.Component {
 						width: this.props.buttonWidth * this.props.difficultyOptions[0][1][0] + this.props.buttonWidthUnit
 					}}
 				>
-					{this.props.difficultyDiv}
+					{this.props.difficultyDivBuilder(this.state.cBg,this.state.cFg)}
 					<div id="remainingFlags">
 						<span id="remainingFlagsSymbol">{this.state.gFlag}</span>
 						&nbsp;
