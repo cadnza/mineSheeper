@@ -260,7 +260,7 @@ class Minefield extends React.Component {
 			// Get new visible array
 			const arrVisible = revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
 			// Check for victory
-			let isVictory = this.checkForVictory(arrVisible);
+			const isVictory = this.checkForVictory(arrVisible);
 			// Update visible array if not yet victory
 			if(!isVictory) {
 				this.setState({
@@ -304,7 +304,7 @@ class Minefield extends React.Component {
 		// Get new visible array
 		arrVisible[idx] = newVal;
 		// Check for victory
-		let isVictory = this.checkForVictory(arrVisible);
+		const isVictory = this.checkForVictory(arrVisible);
 		// Update visible array if not yet victory
 		if(!isVictory) {
 			this.setState({arrayVisible: arrVisible});
@@ -453,15 +453,15 @@ class Minefield extends React.Component {
 		document.getSelection().removeAllRanges();
 	};
 	countRemainingFlags = () => {
-		let flagsPlaced = this.state.arrayVisible.filter((x) => {return x === this.state.kFlag;}).length;
-		let final = this.props.nMines - flagsPlaced;
+		const flagsPlaced = this.state.arrayVisible.filter((x) => {return x === this.state.kFlag;}).length;
+		const final = this.props.nMines - flagsPlaced;
 		return final;
 	};
 	setModButtonColor = () => {
-		let disabled = "button:disabled { background-color: " + this.state.cBg +
+		const disabled = "button:disabled { background-color: " + this.state.cBg +
 			" !important; }";
-		let hover = "button:hover { background-color: " + this.state.cHover + " !important}";
-		let styleString = [disabled,hover].join(" ");
+		const hover = "button:hover { background-color: " + this.state.cHover + " !important}";
+		const styleString = [disabled,hover].join(" ");
 		document.getElementsByTagName("style")[0].innerText = styleString;
 	};
 }
