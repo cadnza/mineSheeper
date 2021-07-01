@@ -146,6 +146,7 @@ class Minefield extends React.Component {
 					<div>
 						<button
 							id="help"
+							onClick={this.toggleHelp}
 							style={{
 								backgroundColor: this.state.cFg,
 								borderColor: this.state.cBg
@@ -171,6 +172,12 @@ class Minefield extends React.Component {
 						</a>
 					</div>
 				</div>
+			</div>
+			<div
+				id="helpText"
+				onClick={this.toggleHelp}
+			>
+				Oranges are great //TEMP
 			</div>
 		</div>;
 		// Return
@@ -463,6 +470,13 @@ class Minefield extends React.Component {
 		const hover = "button:hover { background-color: " + this.state.cHover + " !important; }";
 		const styleString = [disabled,hover].join(" ");
 		document.getElementsByTagName("style")[0].innerText = styleString;
+	};
+	toggleHelp = () => {
+		const help = document.getElementById("helpText");
+		const isShowing = help.style.display === "block";
+		help.style.opacity = isShowing ? 0 : 1;
+		help.style.display = isShowing ? "none" : "block";
+		this.deselectAll();
 	};
 }
 
