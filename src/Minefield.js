@@ -332,6 +332,10 @@ class Minefield extends React.Component {
 		if(this.state.victoryStatus === 2) {
 			return;
 		}
+		// Do nothing if square has already been revealed
+		if(this.state.arrayVisible[idx] >= 0 && this.state.arrayVisible[idx] <= 8) {
+			return;
+		}
 		// Copy visible array to new array
 		var arrVisible = this.state.arrayVisible;
 		// Get new value for temporary storage
