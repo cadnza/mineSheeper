@@ -119,7 +119,8 @@ class Minefield extends React.Component {
 				<div
 					id="gameFooter"
 					style={{
-						gridTemplateColumns: "1fr repeat(3, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
+						gridTemplateRows: this.props.buttonWidthFull,
+						gridTemplateColumns: "1fr repeat(4, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
 						width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
 						height: this.props.buttonWidthFull
 					}}
@@ -154,6 +155,22 @@ class Minefield extends React.Component {
 						>
 							?
 						</button>
+					</div>
+					<div>
+						<a
+							href="https://google.com/" //TEMP
+							target="_blank"
+							rel="noreferrer"
+						>
+							<button
+								style={{
+									backgroundColor: this.state.cFg,
+									borderColor: this.state.cBg
+								}}
+							>
+								<img id="soundcloudLogo" src="images/soundcloud.png" alt="SoundCloud" />
+							</button>
+						</a>
 					</div>
 					<div>
 						<a

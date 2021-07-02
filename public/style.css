@@ -120,7 +120,8 @@ button > div,
 	-o-transform: matrix(-1, 0, 0, 1, 0, 0);
 	transform: matrix(-1, 0, 0, 1, 0, 0);
 }
-#githubLogo {
+#githubLogo,
+#soundcloudLogo {
 	max-width: 100%;
 	max-height: 100%;
 	filter: drop-shadow(1px 1px 2px black);
