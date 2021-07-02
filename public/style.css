@@ -127,6 +127,7 @@ button > div,
 }
 #helpText {
 	margin: 2px;
+	padding: 0.1in;
 	border-radius: 10px;
 	top: 0;
 	right: 0;
@@ -138,4 +139,20 @@ button > div,
 	cursor: auto;
 	transition-duration: 0.125s;
 	cursor: pointer;
+}
+h1,
+p {
+	color: white;
+	text-shadow: -1px 1px 1px black, 1px 1px 1px black, 1px -1px 1px black,
+		-1px -1px 1px black;
+}
+h1 {
+	font-family: fontTitle;
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: 6px;
+}
+p {
+	margin-top: 0px;
+	margin-bottom: 16px;
 }
