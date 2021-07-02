@@ -190,12 +190,34 @@ class Minefield extends React.Component {
 						</a>
 					</div>
 				</div>
-			</div>
-			<div
-				id="helpText"
-				onClick={this.toggleHelp}
-			>
-				Oranges are great //TEMP
+				<div
+					id="helpText"
+					onClick={this.toggleHelp}
+					style={{
+						backgroundColor: this.state.cFg
+					}}
+				>
+					<h1>Lorem Ipsum</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
+					</p>
+					<h1>Lorem Ipsum</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
+					</p>
+					<h1>Lorem Ipsum</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
+					</p>
+					<h1>Lorem Ipsum</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
+					</p>
+					<h1>Lorem Ipsum</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
+					</p>
+				</div>
 			</div>
 		</div>;
 		// Return
