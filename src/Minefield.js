@@ -93,6 +93,7 @@ class Minefield extends React.Component {
 				<div
 					id="gameHeader"
 					style={{
+						gridTemplateRows: this.props.buttonWidthFull,
 						gridTemplateColumns: String(
 							this.props.nDifficultyButtons * this.props.buttonWidth * this.props.wideButtonMultiplier
 						) + this.props.buttonWidthUnit + " 1fr " + this.props.buttonWidthFull,
