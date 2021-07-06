@@ -24,7 +24,22 @@ class Minefield extends React.Component {
 				0: ["darkgreen","green","rgb(41, 146, 41)"],
 				1: ["orange","darkorange","chocolate"],
 				2: ["darkblue","mediumblue","blue"]
-			}
+			},
+			sSheep: [
+				["./sounds/sheep1.mp3",1],
+				["./sounds/sheep2.mp3",1],
+				["./sounds/sheep3.mp3",1]
+			],
+			sDog: [
+				["./sounds/dog1.mp3",1],
+				["./sounds/dog2.mp3",1],
+				["./sounds/dog3.mp3",1],
+				["./sounds/dog4.mp3",1],
+				["./sounds/dog5.mp3",1]
+			],
+			sBlast: [
+				["./sounds/blast.mp3",1]
+			]
 		};
 	}
 	getSnapshotBeforeUpdate(prevProps) {
