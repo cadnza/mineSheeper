@@ -266,6 +266,13 @@ class Minefield extends React.Component {
 		if(this.state.victoryStatus === 2) {
 			return;
 		}
+		// Do nothing if box is flagged or questioned
+		if(
+			this.state.arrayVisible[idx] === this.state.kFlag ||
+			this.state.arrayVisible[idx] === this.state.kQuestion
+		) {
+			return;
+		}
 		// Get method for recursive reveal if revealed value is 0
 		const revealRecursive = (idx,arrVisible,arrHidden,exclude = []) => {
 			if(arrHidden[idx] === 0) {
@@ -279,13 +286,6 @@ class Minefield extends React.Component {
 			}
 			return arrVisible;
 		};
-		// Do nothing if box is flagged or questioned
-		if(
-			this.state.arrayVisible[idx] === this.state.kFlag ||
-			this.state.arrayVisible[idx] === this.state.kQuestion
-		) {
-			return;
-		}
 		// Reveal all mines and disable further play if revealed is mine
 		if(this.state.arrayHidden[idx] === this.state.kMine) {
 			var arrVisible = this.state.arrayVisible;
