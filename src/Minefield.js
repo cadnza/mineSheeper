@@ -15,6 +15,7 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn",
 			resetIsQueued: false,
 			gFlag: "🌱",
+			gMusic: "🎵",
 			gSound: "🔈",
 			cFg: "green",
 			cBg: "darkgreen",
@@ -121,7 +122,7 @@ class Minefield extends React.Component {
 					id="gameFooter"
 					style={{
 						gridTemplateRows: this.props.buttonWidthFull,
-						gridTemplateColumns: "1fr repeat(4, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
+						gridTemplateColumns: "1fr repeat(5, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
 						width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
 						height: this.props.buttonWidthFull
 					}}
@@ -129,18 +130,28 @@ class Minefield extends React.Component {
 					<div></div>
 					<div>
 						<button
-							id="sound"
-							onClick={this.props.fToggleSound}
+							id="music"
+							onClick={() => {console.log("Assign a function for music");}} //TEMP
 							style={{
 								backgroundColor: this.state.cFg,
 								borderColor: this.state.cBg
 							}}
 						>
-							<span
-								style={{
-									opacity: this.props.soundOn ? "100%" : "25%"
-								}}
-							>
+							<span>
+								{this.state.gMusic}
+							</span>
+						</button>
+					</div>
+					<div>
+						<button
+							id="sound"
+							onClick={() => {console.log("Assign a function for sound");}} //TEMP
+							style={{
+								backgroundColor: this.state.cFg,
+								borderColor: this.state.cBg
+							}}
+						>
+							<span>
 								{this.state.gSound}
 							</span>
 						</button>
