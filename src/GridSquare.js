@@ -46,7 +46,7 @@ class GridSquare extends React.Component {
 					final = <div>💥</div>;
 					break;
 				case this.props.kFlag:
-					final = <div>{this.sampleFromArray(["🌱","🌲","🎄","🌳","🌵","🌿","☘️","🍀"])}</div>;
+					final = <div>{this.props.fSampleFromArray(["🌱","🌲","🎄","🌳","🌵","🌿","☘️","🍀"])}</div>;
 					break;
 				case this.props.kQuestion:
 					final = <div>🐶</div>;
@@ -64,12 +64,8 @@ class GridSquare extends React.Component {
 			return final;
 		}
 	);
-	sampleFromArray = (arr) => {
-		const final = arr[Math.floor(Math.random() * arr.length)];
-		return final;
-	};
 	getSheep = () => {
-		let final = this.sampleFromArray(
+		let final = this.props.fSampleFromArray(
 			[
 				Array(3).fill("🐑"),
 				"🐏"
@@ -78,7 +74,7 @@ class GridSquare extends React.Component {
 		return final;
 	};
 	randomMirror = () => {
-		let final = this.sampleFromArray([" mirrored",""]);
+		let final = this.props.fSampleFromArray([" mirrored",""]);
 		return final;
 	};
 	getTextColor = (x) => {

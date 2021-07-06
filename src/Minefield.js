@@ -75,6 +75,7 @@ class Minefield extends React.Component {
 					textData={this.state.arrayVisible[buttonIdx]}
 					backgroundColor={this.state.cFg}
 					borderColor={this.state.cBg}
+					fSampleFromArray={this.sampleFromArray}
 				/>
 			);
 		}
@@ -537,6 +538,10 @@ class Minefield extends React.Component {
 		help.style.opacity = isShowing ? 0 : 1;
 		help.style.display = isShowing ? "none" : "block";
 		this.deselectAll();
+	};
+	sampleFromArray = (arr) => {
+		const final = arr[Math.floor(Math.random() * arr.length)];
+		return final;
 	};
 }
 
