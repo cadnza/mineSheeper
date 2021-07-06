@@ -258,6 +258,18 @@ class Minefield extends React.Component {
 			this.setState({arrayVisible: Array(this.props.size[0] * this.props.size[1])});
 		}
 	};
+	revealRecursive = (idx,arrVisible,arrHidden,exclude = []) => {
+		if(arrHidden[idx] === 0) {
+			var adjs = this.getAdjSquares(idx);
+			exclude.push(idx);
+			adjs = adjs.filter(x => {return !exclude.includes(x);});
+			adjs.map(x => {return this.revealRecursive(x,arrVisible,arrHidden,exclude);});
+		}
+		if(idx < this.props.size[0] * this.props.size[1]) {
+			arrVisible[idx] = arrHidden[idx];
+		}
+		return arrVisible;
+	};
 	processSquareClick = (idx) => {
 		// Do nothing if game has already been lost or won
 		if(this.state.victoryStatus === 1) {
@@ -273,19 +285,6 @@ class Minefield extends React.Component {
 		) {
 			return;
 		}
-		// Get method for recursive reveal if revealed value is 0
-		const revealRecursive = (idx,arrVisible,arrHidden,exclude = []) => {
-			if(arrHidden[idx] === 0) {
-				var adjs = this.getAdjSquares(idx);
-				exclude.push(idx);
-				adjs = adjs.filter(x => {return !exclude.includes(x);});
-				adjs.map(x => {return revealRecursive(x,arrVisible,arrHidden,exclude);});
-			}
-			if(idx < this.props.size[0] * this.props.size[1]) {
-				arrVisible[idx] = arrHidden[idx];
-			}
-			return arrVisible;
-		};
 		// Reveal all mines and disable further play if revealed is mine
 		if(this.state.arrayHidden[idx] === this.state.kMine) {
 			var arrVisible = this.state.arrayVisible;
@@ -311,13 +310,13 @@ class Minefield extends React.Component {
 		if(!this.state.started) {
 			this.setState({started: true});
 			const arrHidden = this.getHiddenGrid(idx);
-			const arrVisible = revealRecursive(idx,Array(this.props.size[0] * this.props.size[1]),arrHidden);
+			const arrVisible = this.revealRecursive(idx,Array(this.props.size[0] * this.props.size[1]),arrHidden);
 			this.setState({arrayVisible: arrVisible});
 		}
 		// Perform normal click otherwise
 		else {
 			// Get new visible array
-			const arrVisible = revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
+			const arrVisible = this.revealRecursive(idx,this.state.arrayVisible,this.state.arrayHidden);
 			// Check for victory
 			const isVictory = this.checkForVictory(arrVisible);
 			// Update visible array if not yet victory
