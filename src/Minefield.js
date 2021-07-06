@@ -557,6 +557,18 @@ class Minefield extends React.Component {
 		const final = arr[Math.floor(Math.random() * arr.length)];
 		return final;
 	};
+	playRandomSound = (soundsList) => {
+		const chosenEntry = this.sampleFromArray(soundsList);
+		const chosenSound = chosenEntry[0];
+		const chosenVolume = chosenEntry[1];
+		const soundNew = document.createElement("audio");
+		const source = document.createElement("source");
+		source.src = chosenSound;
+		soundNew.appendChild(source);
+		soundNew.volume = chosenVolume;
+		soundNew.play();
+		soundNew.remove();
+	};
 }
 
 export default Minefield;
