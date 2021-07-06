@@ -27,7 +27,8 @@ body {
 #victoryStatus,
 #remainingFlagsSymbol,
 .difficultyButton,
-#sound {
+#soundButton,
+#musicButton {
 	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
 		-1px -1px 0px black;
 }
@@ -75,7 +76,8 @@ button > div,
 #gameFooter {
 	display: grid;
 }
-#sound {
+#soundButton,
+#musicButton {
 	font-size: 7pt;
 }
 #help {
@@ -84,7 +86,8 @@ button > div,
 	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
 		-1px -1px 0px black;
 }
-#sound:active {
+#soundButton:active,
+#musicButton:active {
 	font-size: 4pt;
 }
 #help:active {
