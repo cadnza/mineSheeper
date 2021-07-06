@@ -130,28 +130,28 @@ class Minefield extends React.Component {
 					<div></div>
 					<div>
 						<button
-							id="music"
-							onClick={() => {console.log("Assign a function for music");}} //TEMP
+							id="musicButton"
+							onClick={this.toggleMusic} //TEMP
 							style={{
 								backgroundColor: this.state.cFg,
 								borderColor: this.state.cBg
 							}}
 						>
-							<span>
+							<span id="musicSymbol">
 								{this.state.gMusic}
 							</span>
 						</button>
 					</div>
 					<div>
 						<button
-							id="sound"
+							id="soundButton"
 							onClick={() => {console.log("Assign a function for sound");}} //TEMP
 							style={{
 								backgroundColor: this.state.cFg,
 								borderColor: this.state.cBg
 							}}
 						>
-							<span>
+							<span id="soundSymbol">
 								{this.state.gSound}
 							</span>
 						</button>
@@ -525,6 +525,11 @@ class Minefield extends React.Component {
 		const hover = "button:hover { background-color: " + this.state.cHover + " !important; }";
 		const styleString = [disabled,hover].join(" ");
 		document.getElementsByTagName("style")[0].innerText = styleString;
+	};
+	toggleMusic = () => {
+		const music = document.getElementById("music");
+		music.muted = !music.muted;
+		document.getElementById("musicSymbol").style.opacity = music.muted ? 0.25 : 1;
 	};
 	toggleHelp = () => {
 		const help = document.getElementById("helpText");
