@@ -30,6 +30,9 @@ class Minefield extends React.Component {
 				["./sounds/sheep2.mp3",0.10],
 				["./sounds/sheep3.mp3",0.10]
 			],
+			sPlant: [
+				["./sounds/plant.mp3",0.15]
+			],
 			sDog: [
 				["./sounds/dog1.mp3",0.7],
 				["./sounds/dog2.mp3",0.6],
@@ -377,6 +380,7 @@ class Minefield extends React.Component {
 		// Flag if empty
 		if(typeof this.state.arrayVisible[idx] === "undefined" && this.countRemainingFlags() > 0) {
 			newVal = this.state.kFlag;
+			this.playRandomSound(this.state.sPlant);
 		}
 		// Change to questioned if flagged
 		else if(this.state.arrayVisible[idx] === this.state.kFlag || !this.countRemainingFlags()) {
