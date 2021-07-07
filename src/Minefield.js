@@ -31,11 +31,11 @@ class Minefield extends React.Component {
 				["./sounds/sheep3.mp3",0.10]
 			],
 			sDog: [
-				["./sounds/dog1.mp3",1],
-				["./sounds/dog2.mp3",1],
-				["./sounds/dog3.mp3",1],
-				["./sounds/dog4.mp3",1],
-				["./sounds/dog5.mp3",1]
+				["./sounds/dog1.mp3",0.7],
+				["./sounds/dog2.mp3",0.6],
+				["./sounds/dog3.mp3",0.75],
+				["./sounds/dog4.mp3",0.6],
+				["./sounds/dog5.mp3",0.6]
 			],
 			sBlast: [
 				["./sounds/blast.mp3",0.15]
@@ -381,6 +381,7 @@ class Minefield extends React.Component {
 		// Change to questioned if flagged
 		else if(this.state.arrayVisible[idx] === this.state.kFlag || !this.countRemainingFlags()) {
 			newVal = this.state.kQuestion;
+			this.playRandomSound(this.state.sDog);
 		}
 		// Empty if questioned
 		if(this.state.arrayVisible[idx] === this.state.kQuestion) {
