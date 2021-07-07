@@ -38,7 +38,7 @@ class Minefield extends React.Component {
 				["./sounds/dog5.mp3",1]
 			],
 			sBlast: [
-				["./sounds/blast.mp3",1]
+				["./sounds/blast.mp3",0.15]
 			]
 		};
 	}
@@ -324,6 +324,7 @@ class Minefield extends React.Component {
 				cHover: this.state.colors[2][2],
 				arrayVisible: arrVisible
 			});
+			this.playRandomSound(this.state.sBlast);
 			return;
 		}
 		// Initialize hidden array and recursively reveal square if game not yet started
