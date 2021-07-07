@@ -286,6 +286,11 @@ class Minefield extends React.Component {
 		return arrVisible;
 	};
 	processSquareClick = (idx) => {
+		// Start music if paused
+		const music = document.getElementById("music");
+		if(music.paused) {
+			music.play();
+		}
 		// Do nothing if game has already been lost or won
 		if(this.state.victoryStatus === 1) {
 			return;
