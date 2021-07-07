@@ -26,9 +26,9 @@ class Minefield extends React.Component {
 				2: ["darkblue","mediumblue","blue"]
 			},
 			sSheep: [
-				["./sounds/sheep1.mp3",1],
-				["./sounds/sheep2.mp3",1],
-				["./sounds/sheep3.mp3",1]
+				["./sounds/sheep1.mp3",0.10],
+				["./sounds/sheep2.mp3",0.10],
+				["./sounds/sheep3.mp3",0.10]
 			],
 			sDog: [
 				["./sounds/dog1.mp3",1],
@@ -346,6 +346,8 @@ class Minefield extends React.Component {
 				});
 			}
 		}
+		// Play sheep sound
+		this.playRandomSound(this.state.sSheep);
 		// Deselect all text
 		this.deselectAll();
 		// Return
@@ -566,10 +568,7 @@ class Minefield extends React.Component {
 		const chosenEntry = this.sampleFromArray(soundsList);
 		const chosenSound = chosenEntry[0];
 		const chosenVolume = chosenEntry[1];
-		const soundNew = document.createElement("audio");
-		const source = document.createElement("source");
-		source.src = chosenSound;
-		soundNew.appendChild(source);
+		const soundNew = new Audio(chosenSound);
 		soundNew.volume = chosenVolume;
 		soundNew.play();
 		soundNew.remove();
