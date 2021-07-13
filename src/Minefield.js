@@ -212,9 +212,9 @@ class Minefield extends React.Component {
 					<p>You win when the pasture is safe.</p>
 					<h1>credits</h1>
 					<ul>
-						<li>Sheep: <a href="https://www.youtube.com/watch?v=0x0UpxYfREw" target="_blank" rel="noreferrer">Bit sounds</a></li>
-						<li>Sheepdogs: <a href="https://soundbible.com/2146-German-Shepard.html" target="_blank" rel="noreferrer">SoundBible</a></li>
-						<li>Blasts: <a href="https://soundbible.com/1919-Shotgun-Blast.html" target="_blank" rel="noreferrer">SoundBible</a></li>
+						<li><a href="https://www.youtube.com/watch?v=0x0UpxYfREw" target="_blank" rel="noreferrer">Bit sounds</a> for the sheep</li>
+						<li><a href="https://soundbible.com/2146-German-Shepard.html" target="_blank" rel="noreferrer">SoundBible</a> for the sheepdogs</li>
+						<li><a href="https://soundbible.com/1919-Shotgun-Blast.html" target="_blank" rel="noreferrer">SoundBible</a>for the blasts</li>
 					</ul>
 					<p
 						id="copyright"
