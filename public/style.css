@@ -31,13 +31,18 @@ body {
 	text-shadow: -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black,
 		-1px -1px 0px black;
 }
-#displayTitle {
+.displayTitle {
 	font-family: fontTitle;
-	font-size: 24pt;
-	margin-bottom: 15px;
 	color: white;
 	text-shadow: -1px 1px 1px black, 1px 1px 1px black, 1px -1px 1px black,
 		-1px -1px 1px black;
+}
+#displayTitleDesktop {
+	font-size: 24pt;
+	margin-bottom: 15px;
+}
+#displayTitleMobile {
+	font-size: 24px;
 }
 * {
 	vertical-align: middle;

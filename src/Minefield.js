@@ -57,7 +57,8 @@ class Minefield extends React.Component {
 		return true;
 	}
 	render() {
-		const final = this.buildUI();
+		const isMobile = /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		const final = isMobile ? this.buildMobileBanner() : this.buildUI();
 		return final;
 	}
 	componentDidUpdate() {
@@ -108,7 +109,7 @@ class Minefield extends React.Component {
 					width: (this.props.size[1] * this.props.buttonWidth) + this.props.buttonWidthUnit
 				}}
 			>
-				<div id="displayTitle">Minesheeper</div>
+				<div className="displayTitle" id="displayTitleDesktop">Minesheeper</div>
 				<div
 					id="gameHeader"
 					style={{
@@ -226,6 +227,31 @@ class Minefield extends React.Component {
 			</div>
 		</div>;
 		// Return
+		return final;
+	};
+	buildMobileBanner = () => {
+		const final = <div
+			style={{
+				display: "block",
+				position: "absolute",
+				height: "100vh",
+				width: "100vw"
+			}}
+		>
+			<div
+				className="displayTitle"
+				id="displayTitleMobile"
+				style={{
+					backgroundColor: this.state.cBg,
+					display: "block",
+					position: "absolute",
+					height: "100vh",
+					width: "100vw"
+				}}
+			>
+				Minesheeper
+			</div>
+		</div>;
 		return final;
 	};
 	resetGameProperties = () => {
