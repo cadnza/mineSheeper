@@ -191,31 +191,37 @@ class Minefield extends React.Component {
 				</div>
 				<div
 					id="helpText"
-					onClick={this.toggleHelp}
 					style={{
 						backgroundColor: this.state.cFg
 					}}
 				>
-					<h1>Lorem Ipsum</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
-					</p>
-					<h1>Lorem Ipsum</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
-					</p>
-					<h1>Lorem Ipsum</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
-					</p>
-					<h1>Lorem Ipsum</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
-					</p>
-					<h1>Lorem Ipsum</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tortor diam, feugiat a augue dictum, pharetra rutrum risus. Curabitur placerat dictum nibh, sit amet volutpat ligula egestas a. Cras efficitur nisl non eros gravida sodales. Fusce et turpis sagittis, dapibus nibh sed, tempus metus. In at sagittis turpis, in eleifend est. Sed consequat mi ac facilisis laoreet. Sed et ipsum diam. Etiam vel nibh id lorem aliquet elementum a eget metus. Ut nec egestas risus.
-					</p>
+					<h1>how to play</h1>
+					<p>Your sheep are in a minefield.</p>
+					<p>They're awfully hungry, but they won't graze on shrubbery.</p>
+					<h2>sheep</h2>
+					<p>Click to clear a space for sheep. They'll tell you how many mines are nearby.</p>
+					<h2>shrubs</h2>
+					<p>Right click to plant a shrub. You only have one shrub per mine, so plant them wisely.</p>
+					<h2>sheepdogs</h2>
+					<p>If you're unsure, right click again to take back your shrub and place a sheepdog instead.</p>
+					<p>Don't worry; sheepdogs don't step on mines.</p>
+					<p>And you get your shrub back.</p>
+					<h2>mines</h2>
+					<p>Don't let your sheep graze on them.</p>
+					<h2>winning</h2>
+					<p>You win when the pasture is safe.</p>
+					<h1>credits</h1>
+					<ul>
+						<li>Sheep: <a href="https://www.youtube.com/watch?v=0x0UpxYfREw" target="_blank" rel="noreferrer">Bit sounds</a></li>
+						<li>Sheepdogs: <a href="https://soundbible.com/2146-German-Shepard.html" target="_blank" rel="noreferrer">SoundBible</a></li>
+						<li>Blasts: <a href="https://soundbible.com/1919-Shotgun-Blast.html" target="_blank" rel="noreferrer">SoundBible</a></li>
+					</ul>
+					<p
+						id="copyright"
+						style={{
+							color: this.state.cBg
+						}}
+					/>
 				</div>
 			</div>
 		</div>;
