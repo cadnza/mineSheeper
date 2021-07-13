@@ -173,6 +173,9 @@ li {
 a {
 	color: white;
 }
+.smallEmoji {
+	font-size: 11pt;
+}
 #copyright {
 	text-shadow: none;
 	font-weight: bold;
