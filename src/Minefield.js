@@ -57,7 +57,7 @@ class Minefield extends React.Component {
 		return true;
 	}
 	render() {
-		const isMobile = /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 		const final = isMobile ? this.buildMobileBanner() : this.buildUI();
 		return final;
 	}
