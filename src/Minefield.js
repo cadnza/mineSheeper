@@ -215,7 +215,7 @@ class Minefield extends React.Component {
 						<li><a href="https://www.youtube.com/watch?v=0x0UpxYfREw" target="_blank" rel="noreferrer">Bit sounds</a> for the sheep</li>
 						<li><a href="https://soundbible.com/2146-German-Shepard.html" target="_blank" rel="noreferrer">SoundBible</a> for the sheepdogs</li>
 						<li><a href="https://soundbible.com/1919-Shotgun-Blast.html" target="_blank" rel="noreferrer">SoundBible</a>for the blasts</li>
-						<li><a href="https://github.com/Cronocide" target="_blank" rel="noreferrer">Daniel Dayley</a>for the domain</li>
+						<li><a href="https://github.com/Cronocide" target="_blank" rel="noreferrer">Daniel Dayley</a>for the domain 🙌</li>
 					</ul>
 					<p
 						id="copyright"
