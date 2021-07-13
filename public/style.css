@@ -156,3 +156,6 @@ p {
 	margin-top: 0px;
 	margin-bottom: 16px;
 }
+#soundSymbol {
+	opacity: 0.5;
+}

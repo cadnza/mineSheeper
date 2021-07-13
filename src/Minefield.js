@@ -149,7 +149,7 @@ class Minefield extends React.Component {
 					<div>
 						<button
 							id="soundButton"
-							onClick={() => {console.log("Assign a function for sound");}} //TEMP
+							onClick={this.toggleSound}
 							style={{
 								backgroundColor: this.state.cFg,
 								borderColor: this.state.cBg
@@ -525,11 +525,21 @@ class Minefield extends React.Component {
 		help.style.display = isShowing ? "none" : "block";
 		this.deselectAll();
 	};
+	toggleSound = () => {
+		const soundMutedHolder = document.getElementById("sound");
+		soundMutedHolder.muted = soundMutedHolder.muted ? false : true;
+		const soundSymbol = document.getElementById("soundSymbol");
+		soundSymbol.style.opacity = soundMutedHolder.muted ? 0.5 : 1;
+	};
 	sampleFromArray = (arr) => {
 		const final = arr[Math.floor(Math.random() * arr.length)];
 		return final;
 	};
 	playRandomSound = (soundsList) => {
+		const isMuted = document.getElementById("sound").muted;
+		if(isMuted) {
+			return;
+		}
 		const chosenEntry = this.sampleFromArray(soundsList);
 		const chosenSound = chosenEntry[0];
 		const chosenVolume = chosenEntry[1];
