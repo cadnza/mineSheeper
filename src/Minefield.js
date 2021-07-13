@@ -230,26 +230,58 @@ class Minefield extends React.Component {
 		return final;
 	};
 	buildMobileBanner = () => {
-		const final = <div
-			style={{
-				display: "block",
-				position: "absolute",
-				height: "100vh",
-				width: "100vw"
-			}}
-		>
+		const final = <div>
 			<div
 				className="displayTitle"
 				id="displayTitleMobile"
 				style={{
 					backgroundColor: this.state.cBg,
-					display: "block",
 					position: "absolute",
-					height: "100vh",
-					width: "100vw"
+					height: "calc(100% - 15px)",
+					width: "100%"
 				}}
 			>
 				Minesheeper
+			</div>
+			<div
+				style={{
+					position: "absolute",
+					top: "50px",
+					margin: "30px"
+				}}
+			>
+				<p className="pMobile">Come back on a desktop or laptop computer to herd some sheep.</p>
+				<br />
+				<button
+					className="buttonMobile"
+				>
+					🐑
+				</button>
+			</div>
+			<div
+				style={{
+					position: "absolute",
+					width: "100%",
+					bottom: "5vh"
+				}}
+			>
+				<a
+					href="https://github.com/cadnza/mineSheeper"
+					target="_blank"
+					rel="noreferrer"
+					style={{
+						color: this.state.cFg,
+						textAlign: "center"
+					}}
+				>
+					<p
+						id="copyright"
+						style={{
+							color: "inherit",
+							textAlign: "inherit"
+						}}
+					/>
+				</a>
 			</div>
 		</div>;
 		return final;
