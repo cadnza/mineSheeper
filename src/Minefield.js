@@ -15,7 +15,6 @@ class Minefield extends React.Component {
 			btnClassIdPrefix: "btn",
 			resetIsQueued: false,
 			gFlag: "🌱",
-			gMusic: "🎵",
 			gSound: "🔈",
 			cFg: "green",
 			cBg: "darkgreen",
@@ -141,26 +140,12 @@ class Minefield extends React.Component {
 					id="gameFooter"
 					style={{
 						gridTemplateRows: this.props.buttonWidthFull,
-						gridTemplateColumns: "1fr repeat(5, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
+						gridTemplateColumns: "1fr repeat(3, " + this.props.buttonWidth * this.props.wideButtonMultiplier + this.props.buttonWidthUnit + ")",
 						width: this.props.buttonWidth * this.props.size[1] + this.props.buttonWidthUnit,
 						height: this.props.buttonWidthFull
 					}}
 				>
 					<div></div>
-					<div>
-						<button
-							id="musicButton"
-							onClick={this.toggleMusic} //TEMP
-							style={{
-								backgroundColor: this.state.cFg,
-								borderColor: this.state.cBg
-							}}
-						>
-							<span id="musicSymbol">
-								{this.state.gMusic}
-							</span>
-						</button>
-					</div>
 					<div>
 						<button
 							id="soundButton"
@@ -186,22 +171,6 @@ class Minefield extends React.Component {
 						>
 							?
 						</button>
-					</div>
-					<div>
-						<a
-							href="https://google.com/" //TEMP
-							target="_blank"
-							rel="noreferrer"
-						>
-							<button
-								style={{
-									backgroundColor: this.state.cFg,
-									borderColor: this.state.cBg
-								}}
-							>
-								<img id="soundcloudLogo" src="images/soundcloud.png" alt="SoundCloud" />
-							</button>
-						</a>
 					</div>
 					<div>
 						<a
@@ -289,11 +258,6 @@ class Minefield extends React.Component {
 		return arrVisible;
 	};
 	processSquareClick = (idx) => {
-		// Start music if paused
-		const music = document.getElementById("music");
-		if(music.paused) {
-			music.play();
-		}
 		// Do nothing if game has already been lost or won
 		if(this.state.victoryStatus === 1) {
 			return;
@@ -553,11 +517,6 @@ class Minefield extends React.Component {
 		const hover = "button:hover { background-color: " + this.state.cHover + " !important; }";
 		const styleString = [disabled,hover].join(" ");
 		document.getElementsByTagName("style")[0].innerText = styleString;
-	};
-	toggleMusic = () => {
-		const music = document.getElementById("music");
-		music.muted = !music.muted;
-		document.getElementById("musicSymbol").style.opacity = music.muted ? 0.25 : 1;
 	};
 	toggleHelp = () => {
 		const help = document.getElementById("helpText");
